@@ -6,6 +6,19 @@
 <title>مصادر عربية لكل مرحلة</title>
 <link rel="stylesheet" href="_style.css">
 <style>
+  /* ---------------------------------------------------------------
+     سلّم طباعى بنسبة 1.25 بين كل خطوة والتانية — خمس درجات بس.
+     العائلة واحدة عن قصد (صفر اتصال خارجى)، فالتسلسل محمول
+     على المقاس والوزن واللون مش على تنوع الخطوط.
+     --------------------------------------------------------------- */
+  .wrap {
+    --fs-micro: .72rem;   /* الشارات والأرقام الصغيرة */
+    --fs-meta:  .9rem;    /* البيانات الوصفية والتعليقات الثانوية */
+    --fs-body:  1.125rem; /* النص الأساسى وعناوين المصادر */
+    --fs-lead:  1.4rem;   /* عناوين العناصر القابلة للفتح */
+    --fs-head:  1.75rem;  /* عناوين المراحل */
+  }
+
   .toolbar {
     position: sticky; top: 0; z-index: 5;
     background: var(--bg);
@@ -16,7 +29,7 @@
   .search {
     width: 100%;
     font: inherit;
-    font-size: .95rem;
+    font-size: var(--fs-body);
     padding: .7rem 1rem;
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -25,7 +38,7 @@
     direction: rtl;
   }
   .search:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
-  .counts { color: var(--muted); font-size: .82rem; margin: .6rem 0 0; }
+  .counts { color: var(--muted); font-size: var(--fs-meta); margin: .6rem 0 0; }
 
   .phasehead {
     display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap;
@@ -33,9 +46,9 @@
     padding-bottom: .6rem;
     border-bottom: 1px solid var(--border);
   }
-  .phasehead .phase-num { background: var(--accent); color: #fff; font-weight: 700; font-size: .78rem; padding: .15rem .65rem; border-radius: 999px; }
-  .phasehead h2 { margin: 0; border: 0; padding: 0; font-size: 1.35rem; }
-  .phasehead .dur { color: var(--muted); font-size: .82rem; margin-inline-start: auto; }
+  .phasehead .phase-num { background: var(--accent); color: #fff; font-weight: 700; font-size: var(--fs-micro); padding: .15rem .65rem; border-radius: 999px; }
+  .phasehead h2 { margin: 0; border: 0; padding: 0; font-size: var(--fs-head); line-height: 1.5; }
+  .phasehead .dur { color: var(--muted); font-size: var(--fs-meta); margin-inline-start: auto; }
 
   details.topic {
     background: var(--surface);
@@ -54,7 +67,8 @@
     align-items: center;
     gap: .7rem;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: var(--fs-lead);
+    line-height: 1.55;
     transition: background .12s;
   }
   details.topic > summary::-webkit-details-marker { display: none; }
@@ -69,7 +83,7 @@
   details.topic[open] > summary::before { transform: rotate(-90deg); }
 
   .pill {
-    font-size: .72rem;
+    font-size: var(--fs-micro);
     font-weight: 600;
     color: var(--muted);
     border: 1px solid var(--border);
@@ -100,23 +114,25 @@
     border-radius: 50%;
     background: var(--accent-soft);
     color: var(--accent);
-    font-size: .78rem;
+    font-size: var(--fs-micro);
     font-weight: 700;
     font-family: var(--mono);
   }
   ol.reslist > li:last-child { margin-bottom: .2rem; }
 
-  .res-t { display: block; font-weight: 700; font-size: .97rem; line-height: 1.6; margin-bottom: .25rem; }
-  .res-m { color: var(--muted); font-size: .8rem; margin: 0 0 .5rem; line-height: 1.9; }
+  /* العنوان والوصف بنفس المقاس — الفرق بينهم بالوزن واللون، والسطر
+     الثانوى بيرجع لدرجة أصغر بخطوة كاملة عشان الفرق يتحس فعلاً. */
+  .res-t { display: block; font-weight: 700; font-size: var(--fs-body); line-height: 1.65; margin-bottom: .3rem; }
+  .res-m { color: var(--muted); font-size: var(--fs-meta); margin: 0 0 .5rem; line-height: 1.85; }
   .res-m b { color: var(--text); font-weight: 600; }
   .res-m .sep { opacity: .45; margin: 0 .45rem; }
-  .res-d { margin: 0 0 .4rem; font-size: .92rem; line-height: 1.85; }
-  .res-w { margin: 0; font-size: .87rem; color: var(--muted); line-height: 1.8; }
+  .res-d { margin: 0 0 .45rem; font-size: var(--fs-body); font-weight: 400; line-height: 1.8; }
+  .res-w { margin: 0; font-size: var(--fs-meta); color: var(--muted); line-height: 1.85; }
   .res-w b { color: var(--accent); font-weight: 700; }
 
   .role {
     display: inline-block;
-    font-size: .68rem; font-weight: 700;
+    font-size: var(--fs-micro); font-weight: 700;
     padding: .1rem .5rem; border-radius: 4px;
     margin-inline-start: .4rem;
     vertical-align: .12em;
@@ -132,8 +148,8 @@
     border-radius: var(--radius);
     padding: .8rem 1.1rem;
     margin: 1.2rem 0 0;
-    font-size: .88rem;
-    line-height: 1.85;
+    font-size: var(--fs-body);
+    line-height: 1.8;
   }
   .gap b { color: var(--bad); }
 
