@@ -17,6 +17,19 @@
   --radius: 10px;
   --font: "Segoe UI", "Tahoma", "Arial", sans-serif;
   --mono: "Cascadia Code", "Consolas", "Courier New", monospace;
+  /* ---------- السلّم الطباعى ----------
+     كل درجة = 1.25 × اللى تحتها. ست درجات بس، ومفيش قيم بينهم.
+     العائلة واحدة عن قصد: الصفحات دى بتشتغل بصفر اتصال خارجى، فخط
+     عرض مميز يعنى Google Fonts، ومفيش خط عربى مميز مضمون وجوده
+     كخط نظام على Windows و Android و iOS مع بعض. فالتسلسل محمول
+     على المقاس والوزن واللون بدل تنوع الخطوط.
+     ------------------------------------ */
+  --fs-micro: .72rem;
+  --fs-meta: .9rem;
+  --fs-body: 1.125rem;
+  --fs-lead: 1.4rem;
+  --fs-head: 1.75rem;
+  --fs-title: 2.19rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -62,7 +75,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font);
-  font-size: 17px;
+  font-size: var(--fs-body);
   line-height: 1.95;
   direction: rtl;
   text-align: right;
@@ -85,14 +98,14 @@ body {
 
 .eyebrow {
   color: var(--accent);
-  font-size: .8rem;
+  font-size: var(--fs-micro);
   font-weight: 700;
   letter-spacing: .08em;
   margin: 0 0 .6rem;
 }
 
 .pagehead h1 {
-  font-size: 2.1rem;
+  font-size: var(--fs-title);
   line-height: 1.4;
   margin: 0 0 .9rem;
   font-weight: 700;
@@ -100,7 +113,7 @@ body {
 
 .meta {
   color: var(--muted);
-  font-size: .88rem;
+  font-size: var(--fs-meta);
   line-height: 2.1;
   margin: 0;
 }
@@ -114,7 +127,7 @@ body {
 /* ---------- العناوين ---------- */
 
 h2 {
-  font-size: 1.5rem;
+  font-size: var(--fs-head);
   margin: 3.5rem 0 1.2rem;
   padding-bottom: .6rem;
   border-bottom: 1px solid var(--border);
@@ -122,14 +135,14 @@ h2 {
 }
 
 h3 {
-  font-size: 1.15rem;
+  font-size: var(--fs-lead);
   margin: 2.5rem 0 .8rem;
   font-weight: 700;
   color: var(--accent);
 }
 
 h4 {
-  font-size: 1rem;
+  font-size: var(--fs-body);
   margin: 1.8rem 0 .5rem;
   font-weight: 700;
 }
@@ -181,7 +194,7 @@ pre code {
   background: none;
   padding: 0;
   color: var(--text);
-  font-size: .85rem;
+  font-size: var(--fs-meta);
   white-space: pre;
   display: block;
 }
@@ -199,7 +212,7 @@ pre code {
 table {
   border-collapse: collapse;
   width: 100%;
-  font-size: .93rem;
+  font-size: var(--fs-meta);
 }
 
 th, td {
@@ -243,7 +256,7 @@ tbody tr:last-child td { border-bottom: 0; }
 .callout-title {
   font-weight: 700;
   margin: 0 0 .45rem;
-  font-size: .82rem;
+  font-size: var(--fs-micro);
   letter-spacing: .04em;
   color: var(--accent);
 }
@@ -259,7 +272,7 @@ blockquote {
   padding: .9rem 1.3rem;
   border-inline-start: 2px solid var(--border);
   color: var(--muted);
-  font-size: 1.02rem;
+  font-size: var(--fs-body);
 }
 
 blockquote > :last-child { margin-bottom: 0; }
@@ -268,7 +281,7 @@ blockquote > :last-child { margin-bottom: 0; }
 
 .verdict {
   display: inline-block;
-  font-size: .8rem;
+  font-size: var(--fs-micro);
   font-weight: 700;
   padding: .2rem .7rem;
   border-radius: 999px;
@@ -324,17 +337,17 @@ blockquote > :last-child { margin-bottom: 0; }
   background: var(--accent);
   color: #fff;
   font-weight: 700;
-  font-size: .82rem;
+  font-size: var(--fs-micro);
   padding: .15rem .65rem;
   border-radius: 999px;
   white-space: nowrap;
 }
 
-.phase-head h3 { margin: 0; color: var(--text); font-size: 1.2rem; }
+.phase-head h3 { margin: 0; color: var(--text); font-size: var(--fs-lead); }
 
 .phase-dur {
   color: var(--muted);
-  font-size: .85rem;
+  font-size: var(--fs-meta);
   margin-inline-start: auto;
   white-space: nowrap;
 }
@@ -358,7 +371,7 @@ blockquote > :last-child { margin-bottom: 0; }
   background: var(--surface);
   color: var(--muted);
   text-decoration: none;
-  font-size: .87rem;
+  font-size: var(--fs-meta);
   transition: .15s;
 }
 
@@ -373,7 +386,7 @@ blockquote > :last-child { margin-bottom: 0; }
   padding-top: 1.5rem;
   border-top: 1px solid var(--border);
   color: var(--muted);
-  font-size: .85rem;
+  font-size: var(--fs-meta);
 }
 
 .foot ul { padding-inline-start: 1.3rem; }
@@ -389,10 +402,10 @@ blockquote > :last-child { margin-bottom: 0; }
 }
 
 @media (max-width: 600px) {
-  body { font-size: 16px; line-height: 1.85; }
+  body { line-height: 1.85; }
   .wrap { padding: 2rem 1rem 4rem; }
-  .pagehead h1 { font-size: 1.6rem; }
-  h2 { font-size: 1.3rem; }
+  .pagehead h1 { font-size: var(--fs-head); }
+  h2 { font-size: var(--fs-lead); }
   .phase { padding: 1.2rem; }
 }
 

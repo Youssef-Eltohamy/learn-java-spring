@@ -6,19 +6,6 @@
 <title>مصادر عربية لكل مرحلة</title>
 <link rel="stylesheet" href="_style.css">
 <style>
-  /* ---------------------------------------------------------------
-     سلّم طباعى بنسبة 1.25 بين كل خطوة والتانية — خمس درجات بس.
-     العائلة واحدة عن قصد (صفر اتصال خارجى)، فالتسلسل محمول
-     على المقاس والوزن واللون مش على تنوع الخطوط.
-     --------------------------------------------------------------- */
-  .wrap {
-    --fs-micro: .72rem;   /* الشارات والأرقام الصغيرة */
-    --fs-meta:  .9rem;    /* البيانات الوصفية والتعليقات الثانوية */
-    --fs-body:  1.125rem; /* النص الأساسى وعناوين المصادر */
-    --fs-lead:  1.4rem;   /* عناوين العناصر القابلة للفتح */
-    --fs-head:  1.75rem;  /* عناوين المراحل */
-  }
-
   .toolbar {
     position: sticky; top: 0; z-index: 5;
     background: var(--bg);
@@ -76,7 +63,7 @@
   details.topic > summary::before {
     content: "◂";
     color: var(--accent);
-    font-size: .85rem;
+    font-size: var(--fs-meta);
     transition: transform .18s;
     display: inline-block;
   }
