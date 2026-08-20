@@ -1,0 +1,3 @@
+Disables Jekyll processing on GitHub Pages.
+Required: Jekyll skips files beginning with an underscore, which would
+otherwise 404 the shared stylesheet at _style.css.
