@@ -264,8 +264,8 @@ tbody tr:last-child td { border-bottom: 0; }
   color: var(--accent);
 }
 
-.callout.ok  { background: rgba(21, 128, 61, .07); }
-.callout.bad { background: rgba(185, 28, 28, .07); }
+.callout.ok  { background: color-mix(in srgb, var(--ok) 7%, var(--bg)); }
+.callout.bad { background: color-mix(in srgb, var(--bad) 7%, var(--bg)); }
 
 .callout.ok  .callout-title { color: var(--ok); }
 .callout.bad .callout-title { color: var(--bad); }
@@ -291,9 +291,9 @@ blockquote > :last-child { margin-bottom: 0; }
   margin-bottom: .8rem;
 }
 
-.verdict.true    { background: rgba(21, 128, 61, .13);  color: var(--ok); }
-.verdict.partial { background: rgba(180, 83, 9, .13);   color: var(--warn); }
-.verdict.false   { background: rgba(185, 28, 28, .13);  color: var(--bad); }
+.verdict.true    { background: color-mix(in srgb, var(--ok) 13%, var(--surface));  color: var(--ok); }
+.verdict.partial { background: color-mix(in srgb, var(--warn) 13%, var(--surface));   color: var(--warn); }
+.verdict.false   { background: color-mix(in srgb, var(--bad) 13%, var(--surface));  color: var(--bad); }
 
 /* ---------- قائمة المهام ---------- */
 

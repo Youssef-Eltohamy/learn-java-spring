@@ -126,12 +126,12 @@
     vertical-align: .12em;
     white-space: nowrap;
   }
-  .role.main { background: rgba(21,128,61,.13); color: var(--ok); }
+  .role.main { background: color-mix(in srgb, var(--ok) 13%, var(--surface)); color: var(--ok); }
   .role.sup  { background: var(--accent-soft); color: var(--accent); }
   .role.ref  { background: var(--code-bg); color: var(--muted); }
 
   .gap {
-    background: rgba(185,28,28,.07);
+    background: color-mix(in srgb, var(--bad) 7%, var(--surface));
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: .8rem 1.1rem;
