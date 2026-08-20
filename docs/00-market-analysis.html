@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>تحليل سوق Java &amp; Spring</title>
 <link rel="stylesheet" href="_style.css">
+<script>(function(){try{var t=localStorage.getItem('jsp-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script>
 </head>
 <body>
 <button class="themetoggle" id="tt" title="تبديل الثيم" aria-label="تبديل الثيم">◐</button>
@@ -240,14 +241,13 @@
 
 <script>
 (function () {
-  var r = document.documentElement, k = 'jsp-theme', s = localStorage.getItem(k);
-  if (s) r.setAttribute('data-theme', s);
+  var r = document.documentElement, k = 'jsp-theme';
   document.getElementById('tt').addEventListener('click', function () {
     var dark = r.getAttribute('data-theme') === 'dark' ||
       (!r.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
     var next = dark ? 'light' : 'dark';
     r.setAttribute('data-theme', next);
-    localStorage.setItem(k, next);
+    try { localStorage.setItem(k, next); } catch (e) {}
   });
 })();
 </script>
