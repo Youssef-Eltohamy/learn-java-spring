@@ -7,11 +7,12 @@
   --muted: #6b6862;
   --border: #e3e0da;
   --accent: #b45309;
+  --on-accent: #ffffff;
   --accent-soft: #fef3e2;
   --code-bg: #f2f0ec;
   --code-text: #9a3412;
-  --ok: #15803d;
-  --warn: #b45309;
+  --ok: #0f6132;
+  --warn: #8f4107;
   --bad: #b91c1c;
   --shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 8px 24px rgba(0, 0, 0, .05);
   --radius: 10px;
@@ -40,6 +41,7 @@
     --muted: #a09c96;
     --border: #33313a;
     --accent: #f0a04b;
+    --on-accent: #17161a;
     --accent-soft: #2a2119;
     --code-bg: #2a2830;
     --code-text: #f0a04b;
@@ -57,6 +59,7 @@
   --muted: #a09c96;
   --border: #33313a;
   --accent: #f0a04b;
+  --on-accent: #17161a;
   --accent-soft: #2a2119;
   --code-bg: #2a2830;
   --code-text: #f0a04b;
@@ -335,7 +338,7 @@ blockquote > :last-child { margin-bottom: 0; }
 
 .phase-num {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   font-weight: 700;
   font-size: var(--fs-micro);
   padding: .15rem .65rem;
@@ -365,7 +368,7 @@ blockquote > :last-child { margin-bottom: 0; }
 
 .nav a {
   display: inline-block;
-  padding: .4rem .95rem;
+  padding: .5rem .95rem;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--surface);
@@ -420,8 +423,8 @@ blockquote > :last-child { margin-bottom: 0; }
   border: 1px solid var(--border);
   color: var(--muted);
   border-radius: 999px;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.75rem;
+  height: 2.75rem;
   font-size: 1rem;
   cursor: pointer;
   box-shadow: var(--shadow);
@@ -429,3 +432,7 @@ blockquote > :last-child { margin-bottom: 0; }
 }
 
 .themetoggle:hover { color: var(--accent); border-color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

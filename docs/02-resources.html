@@ -33,7 +33,7 @@
     padding-bottom: .6rem;
     border-bottom: 1px solid var(--border);
   }
-  .phasehead .phase-num { background: var(--accent); color: #fff; font-weight: 700; font-size: var(--fs-micro); padding: .15rem .65rem; border-radius: 999px; }
+  .phasehead .phase-num { background: var(--accent); color: var(--on-accent); font-weight: 700; font-size: var(--fs-micro); padding: .15rem .65rem; border-radius: 999px; }
   .phasehead h2 { margin: 0; border: 0; padding: 0; font-size: var(--fs-head); line-height: 1.5; }
   .phasehead .dur { color: var(--muted); font-size: var(--fs-meta); margin-inline-start: auto; }
 
@@ -141,12 +141,17 @@
   .gap b { color: var(--bad); }
 
   .empty { color: var(--muted); text-align: center; padding: 3rem 0; display: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    details.topic > summary,
+    details.topic > summary::before { transition: none; }
+  }
 </style>
 </head>
 <body>
 <button class="themetoggle" id="tt" title="تبديل الثيم" aria-label="تبديل الثيم">◐</button>
 
-<div class="wrap">
+<main class="wrap">
 
 <nav class="nav">
   <a href="index.html">الفهرس</a>
@@ -178,11 +183,11 @@
 
 <div class="toolbar">
   <input class="search" id="q" type="search" placeholder="ابحث عن موضوع أو قناة… مثلاً: Spring أو Docker أو SQL" aria-label="بحث فى المصادر">
-  <p class="counts" id="counts"></p>
+  <p class="counts" id="counts" aria-live="polite" aria-atomic="true"></p>
 </div>
 
 <div id="out"></div>
-<p class="empty" id="empty">مفيش نتايج مطابقة.</p>
+<p class="empty" id="empty" role="status">مفيش نتايج مطابقة.</p>
 
 <footer class="foot">
   <p><strong>منهجية الاختيار والتحقق</strong></p>
@@ -194,7 +199,7 @@
   </ul>
 </footer>
 
-</div>
+</main>
 
 <script>
 const DATA = [

@@ -19,7 +19,13 @@
     transition: .15s;
   }
   .doclink:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .doclink h3 { margin: 0 0 .4rem; color: var(--accent); }
+  .doclink h2 {
+    margin: 0 0 .4rem;
+    color: var(--accent);
+    font-size: var(--fs-lead);
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
   .doclink p { margin: 0; color: var(--muted); font-size: var(--fs-meta); line-height: 1.8; }
   .doclink .tag {
     display: inline-block;
@@ -30,12 +36,16 @@
     padding: .1rem .6rem;
     margin-top: .8rem;
   }
+  @media (prefers-reduced-motion: reduce) {
+    .doclink { transition: none; }
+    .doclink:hover { transform: none; }
+  }
 </style>
 </head>
 <body>
 <button class="themetoggle" id="tt" title="تبديل الثيم" aria-label="تبديل الثيم">◐</button>
 
-<div class="wrap">
+<main class="wrap">
 
 <header class="pagehead">
   <p class="eyebrow">دليل عربى</p>
@@ -49,19 +59,19 @@
 <div class="docgrid">
 
   <a class="doclink" href="00-market-analysis.html">
-    <h3>تحليل السوق والقرار</h3>
+    <h2>تحليل السوق والقرار</h2>
     <p>تفكيك النصيحة الشائعة لأربع دعاوى منفصلة، وتقييم كل واحدة بالأرقام. ليه «العدد قليل» أخطر جملة فى النصيحة، وليه <code>Java</code> برضه هى الاختيار الصح لمبتدئ هدفه لسه مفتوح.</p>
     <span class="tag">قرار</span>
   </a>
 
   <a class="doclink" href="01-roadmap.html">
-    <h3>خارطة الطريق</h3>
+    <h2>خارطة الطريق</h2>
     <p>ست مراحل من الصفر لأول وظيفة، بمدد واقعية واختبارات اجتياز لكل مرحلة، ومؤشرات تحذير مبكرة لو المسار انحرف.</p>
     <span class="tag">تنفيذ</span>
   </a>
 
   <a class="doclink" href="02-resources.html">
-    <h3>المصادر العربية</h3>
+    <h2>المصادر العربية</h2>
     <p>مصادر يوتيوب لكل عنصر فى الخريطة، مرتبة بترتيب المشاهدة ومعاها نبذة و«ليه دى». كل رابط اتفتح واتحقق منه، والفجوات اللى مفيش ليها محتوى عربى معلّمة صراحةً.</p>
     <span class="tag">مصادر</span>
   </a>
@@ -84,7 +94,7 @@
   <p>المحتوى ده اجتهاد شخصى للتعلم، مش استشارة مهنية. الأرقام والروابط صحيحة وقت آخر تحديث وممكن تتغير.</p>
 </footer>
 
-</div>
+</main>
 
 <script>
 (function () {
