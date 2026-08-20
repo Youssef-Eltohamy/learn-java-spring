@@ -1,7 +1,7 @@
 # خارطة الطريق — من الصفر لوظيفة Java Backend
 
 > مبنية على [تحليل السوق](00-market-analysis.md)
-> نقطة البداية المفترضة: الصفر — من غير `stack` سابق
+> نقطة البداية المفترضة: الصفر، من غير `stack` سابق
 > المدى الواقعى: ١٨–٣٠ شهر لأول وظيفة
 
 ---
@@ -12,7 +12,7 @@
 2. **كل مشروع يتنشر.** `localhost` مش دليل على حاجة.
 3. **متكتبش سطر مش فاهمه.** خصوصاً المولّد بالـ `AI`.
 4. **الـ `AI` يشرح، مش يكتب** — فى المرحلة ٠ والمرحلة ١ تحديداً. بعد كده يبقى أداة إنتاج.
-5. **متقفزش لـ `Spring` بدرى.** ده أشهر خطأ. `Spring` بيحل مشاكل — لو معرفتش المشاكل دى بنفسك، `Spring` هيبقى سحر أسود بتحفظه.
+5. **متقفزش لـ `Spring` بدرى.** ده أشهر خطأ. `Spring` بيحل مشاكل، لو معرفتش المشاكل دى بنفسك، `Spring` هيبقى سحر أسود بتحفظه.
 
 ---
 
@@ -20,9 +20,9 @@
 
 هدف المرحلة دى مش `Java`. هدفها إنك تبقى قادر تشتغل أصلاً.
 
-- [ ] **`Git`** — `commit`، `branch`، `merge`، `rebase` الأساسى، `GitHub`
+- [ ] **`Git`**: `commit`، `branch`، `merge`، `rebase` الأساسى، `GitHub`
 - [ ] **سطر الأوامر** — التنقل، الملفات، الـ `pipes`، أساسيات `Linux`
-- [ ] **إزاى الويب شغال** — `HTTP`، `request/response`، `status codes`، `DNS`، `client vs server`
+- [ ] **إزاى الويب شغال**: `HTTP`، `request/response`، `status codes`، `DNS`، `client vs server`
 - [ ] **`IntelliJ IDEA Community`** — تثبيت وإتقان الاختصارات الأساسية
 - [ ] **تحديد الهدف** — ريموت بالدولار؟ وظيفة محلية؟ خليج؟ (ده بيحدد كل اللى بعده)
 
@@ -35,27 +35,27 @@
 **ممنوع `Spring` نهائياً فى المرحلة دى.** ممنوع أى `framework`.
 
 - [ ] الأساسيات — المتغيرات، الشروط، الحلقات، الدوال
-- [ ] الـ `OOP` بعمق — `classes`، `interfaces`، `inheritance`، `polymorphism`، `abstraction`
-- [ ] الـ `Collections` — `List`، `Map`، `Set` وإمتى تستخدم إيه ولىه
+- [ ] الـ `OOP` بعمق: `classes`، `interfaces`، `inheritance`، `polymorphism`، `abstraction`
+- [ ] الـ `Collections`: `List`، `Map`، `Set` وإمتى تستخدم إيه وليه
 - [ ] الـ `Generics` والـ `Exceptions`
 - [ ] `Streams API` والـ `lambdas`
 - [ ] `File I/O`
-- [ ] مقدمة `concurrency` — `Thread`، `ExecutorService`، مشكلة الـ `race condition`
+- [ ] مقدمة `concurrency`: `Thread`، `ExecutorService`، مشكلة الـ `race condition`
 - [ ] `Maven` — ليه موجود وإزاى يشتغل
 - [ ] `JUnit 5` + `Mockito` — اكتب اختبارات من أول يوم
 
 **المشروع:** تطبيق `console` بحجم حقيقى — مثلاً نظام إدارة مكتبة أو متتبع مصاريف. بيانات فى ملفات، منطق حقيقى، اختبارات.
 
-**اختبار الاجتياز:** تقدر تشرح الفرق بين `interface` و`abstract class` وإمتى تختار كل واحد — من غير ما تفتح جوجل.
+**اختبار الاجتياز:** تقدر تشرح الفرق بين `interface` و`abstract class` وإمتى تختار كل واحد، من غير ما تفتح جوجل.
 
 ---
 
 ## المرحلة ٢ — الداتا والشبكة (٣–٤ شهور)
 
-- [ ] **`SQL` بعمق** — `joins`، `indexes`، `transactions`، `normalization`، `execution plans`
+- [ ] **`SQL` بعمق**: `joins`، `indexes`، `transactions`، `normalization`، `execution plans`
 - [ ] **`PostgreSQL`** — تثبيت وتشغيل واستخدام حقيقى
 - [ ] **`JDBC` يدوى** — اتصل بقاعدة بيانات من غير `ORM`، عشان تحس بالألم اللى `JPA` بيحله
-- [ ] **`REST` من الأول** — `resources`، `verbs`، `status codes`، `idempotency`
+- [ ] **`REST` من الأول**: `resources`، `verbs`، `status codes`، `idempotency`
 - [ ] **`Servlet` بسيط** أو `HTTP server` يدوى — عشان تفهم إيه اللى `Spring` بيخبّيه
 - [ ] **`JSON`** والـ `serialization`
 
@@ -71,10 +71,10 @@
 
 - [ ] **`Spring Core`** — الـ `IoC container`، الـ `Dependency Injection`، الـ `beans` ودورة حياتها
 - [ ] **`Spring Boot`** — الـ `auto-configuration` وليه موجود
-- [ ] **`Spring Web`** — `controllers`، `validation`، معالجة الأخطاء موحّدة
-- [ ] **`Spring Data JPA`** — و**مصايده**: `N+1`، `lazy loading`، `dirty checking`
-- [ ] **`Spring Security`** — `JWT`، `roles`، `OAuth2` الأساسى
-- [ ] **`@Transactional`** — وإزاى بيفشل صح ولا غلط
+- [ ] **`Spring Web`**: `controllers`، `validation`، معالجة الأخطاء موحّدة
+- [ ] **`Spring Data JPA`**، و**مصايده**: `N+1`، `lazy loading`، `dirty checking`
+- [ ] **`Spring Security`**: `JWT`، `roles`، `OAuth2` الأساسى
+- [ ] **`@Transactional`**، وإزاى بيفشل صح ولا غلط
 - [ ] **`Flyway`** لإدارة تغييرات قاعدة البيانات
 - [ ] **`Testcontainers`** لاختبارات تكامل حقيقية
 
@@ -87,14 +87,14 @@
 الفرق بين `junior` مرفوض و`engineer` مطلوب بيتحدد هنا.
 
 - [ ] **`Docker`** و`docker-compose`
-- [ ] **`CI/CD`** — `GitHub Actions`
+- [ ] **`CI/CD`**: `GitHub Actions`
 - [ ] **`Redis`** — التخزين المؤقت وأنماطه
 - [ ] **`Kafka`** أو `RabbitMQ` — الرسائل والمعالجة غير المتزامنة
-- [ ] **`observability`** — `logging` منظم، `metrics`، `tracing`
-- [ ] **سحابة واحدة** — `AWS` أساسيات: `EC2`، `RDS`، `S3`، `IAM`
+- [ ] **`observability`**: `logging` منظم، `metrics`، `tracing`
+- [ ] **سحابة واحدة**: `AWS` أساسيات: `EC2`، `RDS`، `S3`، `IAM`
 - [ ] **تصميم الأنظمة** — مقايضات، `caching`، `scaling`، `consistency`
 
-**المشروع الثانى للـ `CV` — وده الأهم:** نظام فى دومين مالى. مثال: بوابة دفع مبسّطة فيها `idempotency` ومعالجة فشل و`audit log` ومعالجة غير متزامنة. ده اللى بيخلّيك مرشح متخصص مش مرشح عام.
+**المشروع الثانى للـ `CV`، وده الأهم:** نظام فى دومين مالى. مثال: بوابة دفع مبسّطة فيها `idempotency` ومعالجة فشل و`audit log` ومعالجة غير متزامنة. ده اللى بيخلّيك مرشح متخصص مش مرشح عام.
 
 ---
 
