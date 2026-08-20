@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مسار Java &amp; Spring</title>
+<link rel="stylesheet" href="_style.css">
+<style>
+  .docgrid { display: grid; gap: 1.1rem; margin-bottom: 3rem; }
+  .doclink {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.7rem;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow);
+    transition: .15s;
+  }
+  .doclink:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .doclink h3 { margin: 0 0 .4rem; color: var(--accent); }
+  .doclink p { margin: 0; color: var(--muted); font-size: .93rem; line-height: 1.8; }
+  .doclink .tag {
+    display: inline-block;
+    font-size: .75rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: .1rem .6rem;
+    margin-top: .8rem;
+  }
+</style>
+</head>
+<body>
+<button class="themetoggle" id="tt" title="تبديل الثيم" aria-label="تبديل الثيم">◐</button>
+
+<div class="wrap">
+
+<header class="pagehead">
+  <p class="eyebrow">دليل عربى</p>
+  <h1>مسار Java &amp; Spring</h1>
+  <p class="meta">
+    <span>آخر تحديث: ٢٠٢٦-٠٨-٢٠</span>
+    <span>موجّه للبداية من الصفر</span>
+  </p>
+</header>
+
+<div class="docgrid">
+
+  <a class="doclink" href="00-market-analysis.html">
+    <h3>تحليل السوق والقرار</h3>
+    <p>تفكيك النصيحة الشائعة لأربع دعاوى منفصلة، وتقييم كل واحدة بالأرقام. ليه «العدد قليل» أخطر جملة فى النصيحة، وليه <code>Java</code> برضه هى الاختيار الصح لمبتدئ هدفه لسه مفتوح.</p>
+    <span class="tag">قرار</span>
+  </a>
+
+  <a class="doclink" href="01-roadmap.html">
+    <h3>خارطة الطريق</h3>
+    <p>ست مراحل من الصفر لأول وظيفة، بمدد واقعية واختبارات اجتياز لكل مرحلة، ومؤشرات تحذير مبكرة لو المسار انحرف.</p>
+    <span class="tag">تنفيذ</span>
+  </a>
+
+  <a class="doclink" href="02-resources.html">
+    <h3>المصادر العربية</h3>
+    <p>مصادر يوتيوب لكل عنصر فى الخريطة، مرتبة بترتيب المشاهدة ومعاها نبذة و«ليه دى». كل رابط اتفتح واتحقق منه، والفجوات اللى مفيش ليها محتوى عربى معلّمة صراحةً.</p>
+    <span class="tag">مصادر</span>
+  </a>
+
+</div>
+
+<h2>الخلاصة فى سطرين</h2>
+
+<div class="callout ok">
+  <p>النصيحة الشائعة صحيحة بحوالى <strong>٧٠٪</strong> — صح فى الاتجاه والسقف وقابلية التصدير، وغلط فى «العدد قليل» وفى التوقيت.</p>
+  <p>القرار: <strong>امشى فى <code>Java</code></strong> — مش لأن الطلب عالى، لكن لأنها الخيار بأوسع أبواب خروج لحد ما الهدف يتحدد. التوقع الواقعى <strong>١٨–٣٠ شهر</strong>.</p>
+</div>
+
+<h2>الخطوة الجاية</h2>
+
+<p>متبدأش بـ <code>Java</code>. ابدأ بالمرحلة ٠ فى خارطة الطريق — <code>Git</code> وسطر الأوامر وفهم الـ <code>HTTP</code>. أربع أسابيع، وهى اللى بتخلّى كل اللى بعدها ممكن.</p>
+
+<footer class="foot">
+  <p>الصفحات دى قائمة بذاتها ومن غير أى اتصال خارجى. نسخ <code>markdown</code> من كل صفحة موجودة فى المستودع بنفس الأسماء.</p>
+  <p>المحتوى ده اجتهاد شخصى للتعلم، مش استشارة مهنية. الأرقام والروابط صحيحة وقت آخر تحديث وممكن تتغير.</p>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var r = document.documentElement, k = 'jsp-theme', s = localStorage.getItem(k);
+  if (s) r.setAttribute('data-theme', s);
+  document.getElementById('tt').addEventListener('click', function () {
+    var dark = r.getAttribute('data-theme') === 'dark' ||
+      (!r.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = dark ? 'light' : 'dark';
+    r.setAttribute('data-theme', next);
+    localStorage.setItem(k, next);
+  });
+})();
+</script>
+</body>
+</html>

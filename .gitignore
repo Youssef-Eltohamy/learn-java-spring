@@ -1,0 +1,15 @@
+# Publish ONLY the docs/ folder as a GitHub Pages site.
+# Everything else in this directory is local working material and must stay unpublished.
+
+# 1. Exclude every top-level entry by default.
+/*
+
+# 2. Re-include only what belongs in the public repository.
+!/.gitignore
+!/README.md
+!/docs/
+
+# 3. Belt and braces: never track local working material,
+#    even if a rule above is ever relaxed.
+/.claude/
+/CLAUDE.md

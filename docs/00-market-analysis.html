@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تحليل سوق Java &amp; Spring</title>
+<link rel="stylesheet" href="_style.css">
+</head>
+<body>
+<button class="themetoggle" id="tt" title="تبديل الثيم" aria-label="تبديل الثيم">◐</button>
+
+<div class="wrap">
+
+<nav class="nav">
+  <a href="index.html">الفهرس</a>
+  <a href="00-market-analysis.html" aria-current="page">تحليل السوق</a>
+  <a href="01-roadmap.html">خارطة الطريق</a>
+  <a href="02-resources.html">المصادر</a>
+</nav>
+
+<header class="pagehead">
+  <p class="eyebrow">تحليل قرار مهنى</p>
+  <h1>هل أتعلم Java و Spring؟</h1>
+  <p class="meta">
+    <span>تاريخ التحليل: ٢٠٢٦-٠٨-١٢</span>
+    <span>الحالة المفترضة: البداية من الصفر</span>
+  </p>
+</header>
+
+<blockquote>
+  <p><strong>السياق:</strong> نصيحة شائعة فى الوسط التقنى المصرى — إن <code>Java</code> و<code>Spring</code> هما الطلب الأكبر فى مصر والشركات الدولية، مع عرض قليل ورواتب أفضل.</p>
+</blockquote>
+
+<h2>١. تفكيك النصيحة لأربع دعاوى</h2>
+
+<p>النصيحة الأصلية مدموجة، وكل جزء فيها درجة صحة مختلفة. الفصل ضرورى عشان القرار يبقى مبنى على الأجزاء الصح مش على المتوسط.</p>
+
+<div class="card">
+  <span class="verdict partial">صح جزئياً</span>
+  <h3>الدعوى الأولى — «الطلب الأكبر»</h3>
+
+  <p>فى شريحة الـ <code>backend</code> المؤسسى، <code>Java</code> و<code>Spring</code> مسيطرين فعلاً. جهات التوظيف الرئيسية فى مصر:</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>القطاع</th><th>أمثلة</th></tr></thead>
+    <tbody>
+      <tr><td>البنوك</td><td><code>CIB</code> — <code>Banque Misr</code> — <code>NBE</code> — <code>Alex Bank</code></td></tr>
+      <tr><td>الـ <code>fintech</code> والدفع</td><td><code>Fawry</code> — <code>Paymob</code> — <code>MNT-Halan</code> — <code>Valu</code> — <code>Network International</code></td></tr>
+      <tr><td>الاتصالات</td><td><code>Vodafone _VOIS</code> — <code>Orange Business</code> — <code>e&amp; Egypt</code></td></tr>
+      <tr><td>مراكز التطوير الأجنبية</td><td><code>IBM</code> — <code>Dell</code> — <code>Siemens</code> — <code>SAP</code> — <code>ITWorx</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>لكن «الأكبر فى السوق كله» مبالغة:</p>
+  <ul>
+    <li><code>.NET</code> مساوى تقريباً لـ <code>Java</code> فى مصر — بنوك وحكومة وشركات كبيرة.</li>
+    <li><code>Python</code> عندها طلب إجمالى أكبر دلوقتى بسبب موجة الـ <code>AI</code>.</li>
+    <li><code>Node/TypeScript</code> مسيطرة على الشركات الناشئة.</li>
+  </ul>
+
+  <div class="callout">
+    <p class="callout-title">الصياغة الدقيقة</p>
+    <p><code>Java</code> هى الأكبر فى قطاع الـ <code>enterprise backend</code>، مش فى السوق ككل.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="verdict false">نص صح — أخطر جزء</span>
+  <h3>الدعوى الثانية — «العدد قليل»</h3>
+
+  <p>عدد اللى بيعرفوا <code>Java</code> فى مصر <strong>مش قليل</strong>. كل كليات الحاسبات بتدرّسها كلغة أولى، وتراكات <code>ITI</code> و<code>NTI</code> بتخرّج مئات سنوياً. سوق الـ <code>junior Java</code> مزدحم بقسوة.</p>
+
+  <p>اللى <strong>قليل فعلاً</strong> حاجة مختلفة تماماً:</p>
+
+  <blockquote>
+    <p>مهندس عنده ٣ سنين فأكتر خبرة إنتاج حقيقية على <code>Spring Boot</code>، مع <code>microservices</code> و<code>messaging</code> و<code>transactions</code> معقدة و<code>JVM tuning</code> وتشخيص مشاكل تحت حمل.</p>
+  </blockquote>
+
+  <p>الأرقام العالمية لسنة ٢٠٢٦ بتأكد الانقسام:</p>
+  <ul>
+    <li>إعلانات وظائف الـ <code>junior</code> انخفضت حوالى <strong>٦٧٪</strong>.</li>
+    <li>البطالة بين الـ <code>senior engineers</code> حوالى <strong>١٪</strong>.</li>
+    <li>وظائف مكتوب عليها <code>junior</code> بتطلب فعلياً ١–٣ سنين خبرة.</li>
+  </ul>
+
+  <div class="callout bad">
+    <p class="callout-title">الخلاصة</p>
+    <p>السوق <strong>مستقطب، مش ناقص</strong>. فيه فائض <code>junior</code> ونقص <code>senior</code> فى نفس الوقت.</p>
+    <p><strong>الأثر على القرار:</strong> الدخول رهان ٢–٤ سنين، مش ٦ شهور. البوابة الأولى ضيقة جداً، واللى بعدها واسع جداً.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="verdict true">صح — بسبب مختلف</span>
+  <h3>الدعوى الثالثة — «الراتب أفضل»</h3>
+
+  <p><code>Java</code> مبتدفعش أكتر لأنها <code>Java</code>. بتدفع أكتر لأن <strong>اللى بيوظفوا <code>Java</code> هم البنوك والـ <code>fintech</code> والأوفشور</strong> — وهى قطاعات بتدفع أعلى بغض النظر عن اللغة. مطور <code>Node</code> فى <code>Paymob</code> بياخد قريب جداً من مطور <code>Java</code> فى نفس المكان.</p>
+
+  <blockquote>
+    <p>الارتباط بين <code>Java</code> والفلوس <strong>ارتباط قطاعى مش تقنى</strong>. الهدف الحقيقى دخول القطاع، واللغة وسيلة.</p>
+  </blockquote>
+
+  <div class="callout bad">
+    <p class="callout-title">تحذير على البيانات</p>
+    <p>أرقام الرواتب المنشورة لمصر على <code>Glassdoor</code> مكسورة — ظهر فيها «<code>EGP 5,125</code> سنوياً» لمطور <code>Java</code>، وده رقم شهرى متقروش غلط. متبنيش قرار على المواقع دى؛ استخدم بدلها شبكة معارف حقيقية وإعلانات فيها <code>range</code> معلن.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="verdict true">صح تماماً — أقوى نقطة</span>
+  <h3>الدعوى الرابعة — «الشركات الدولية»</h3>
+
+  <p>سوق الخليج البنكى — السعودية والإمارات — والأوفشور الأوروبى بيطلبوا <code>Java/Spring</code> <strong>بالاسم</strong> فى الإعلانات. <code>Java</code> هى أكتر مهارة <code>backend</code> قابلة للتصدير من مصر.</p>
+
+  <p>ودى النقطة اللى بتغيّر الوضع المادى فعلاً — مش الراتب المحلى، لكن دخل بالدولار أو اليورو. مع التضخم وتقلب العملة، المقارنة بين راتب محلى وراتب محلى تانى شبه عديمة المعنى.</p>
+</div>
+
+<h2>٢. اللى النصيحة مقالتهوش</h2>
+
+<h3>أ. الجزء الصعب مش اللغة</h3>
+
+<p><code>Java</code> كلغة ممكن تتعلمها فى شهر–شهرين. الصعب هو المنظومة حواليها:</p>
+
+<ul>
+  <li><code>Spring Security</code> والـ <code>authentication/authorization</code></li>
+  <li>الـ <code>transactions</code> وحالات الفشل الجزئى</li>
+  <li><code>JPA / Hibernate</code> وسلوكه غير البديهى — <code>N+1</code> و<code>lazy loading</code> و<code>detached entities</code></li>
+  <li>الـ <code>messaging</code> والـ <code>eventual consistency</code></li>
+  <li>الـ <code>observability</code> وتشخيص مشكلة فى <code>production</code> الساعة ٣ الفجر</li>
+</ul>
+
+<p>الحاجات دى مبتتعلمش من كورس. بتتعلم من نظام بيقع.</p>
+
+<h3>ب. البُعد الأهم — الذكاء الاصطناعى</h3>
+
+<p>الـ <code>boilerplate</code> بتاع <code>Java/Spring</code> هو <strong>بالظبط</strong> النوع اللى الـ <code>AI</code> بيكتبه بامتياز — لغة مطوّلة، موثّقة بغزارة، ٢٥ سنة بيانات تدريب. يعنى الجزء «الكتابة» من الشغلانة دى هو أسرع جزء بيفقد قيمته السوقية.</p>
+
+<p>اللى فاضل قيمته:</p>
+<ul>
+  <li>تصميم النظام والمقايضات المعمارية</li>
+  <li>نمذجة الداتا الصح من أول مرة</li>
+  <li>تشخيص سلوك غريب فى <code>production</code></li>
+  <li>الحكم على كود مولّد — هل ده صح ولا يبان صح؟</li>
+</ul>
+
+<div class="callout">
+  <p class="callout-title">الاستنتاج</p>
+  <p>لو هتتعلم <code>Java</code>، اتعلمها عميق. السطحى منها الـ <code>AI</code> خد مكانه خلاص.</p>
+</div>
+
+<h3>ج. الأدوات المنافسة — بأمانة</h3>
+
+<div class="tablewrap">
+<table>
+  <thead><tr><th>البديل</th><th>الميزة</th><th>العيب</th></tr></thead>
+  <tbody>
+    <tr><td><code>.NET / C#</code></td><td>نفس قوة <code>Java</code> فى مصر تقريباً</td><td>أضعف عالمياً فى الريموت</td></tr>
+    <tr><td><code>Node / TypeScript</code></td><td>دخول أسرع، شركات ناشئة أكتر</td><td>سقف أقل فى الـ <code>enterprise</code></td></tr>
+    <tr><td><code>Python</code></td><td>موجة الـ <code>AI</code> والداتا</td><td>وظائف <code>backend</code> صرفة أقل فى مصر</td></tr>
+    <tr><td><code>Java / Spring</code></td><td>أوسع أبواب خروج + أعلى قابلية تصدير</td><td>أبطأ دخول، بوابة <code>junior</code> مزدحمة</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>٣. الحكم النهائى</h2>
+
+<p>النصيحة <strong>صحيحة بحوالى ٧٠٪</strong>:</p>
+
+<div class="tablewrap">
+<table>
+  <thead><tr><th>النقطة</th><th>الحكم</th></tr></thead>
+  <tbody>
+    <tr><td>الاتجاه — <code>Java</code> مسار <code>backend</code> مؤسسى قوى</td><td><span class="verdict true">صح</span></td></tr>
+    <tr><td>الشركات الدولية وقابلية التصدير</td><td><span class="verdict true">صح تماماً</span></td></tr>
+    <tr><td>السقف المادى</td><td><span class="verdict true">صح</span></td></tr>
+    <tr><td>«الطلب الأكبر» فى السوق ككل</td><td><span class="verdict partial">مبالغة</span></td></tr>
+    <tr><td>«العدد قليل» على مستوى الـ <code>junior</code></td><td><span class="verdict false">غلط</span></td></tr>
+    <tr><td>التوقيت الواقعى</td><td><span class="verdict false">ناقصة تماماً</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<blockquote>
+  <p>نصيحة ممتازة كخطة مسار مهنى لـ ٢–٤ سنين.<br>
+  نصيحة سيئة لو اتفهمت على إنها طريق سريع لأول وظيفة.</p>
+</blockquote>
+
+<h2>٤. القرار الموصى به — لمبتدئ من الصفر</h2>
+
+<div class="callout ok">
+  <p class="callout-title">التوصية</p>
+  <p>امشى فى <code>Java</code> — مع وعى كامل بالمدة.</p>
+</div>
+
+<p>الأسباب، مرتبة:</p>
+
+<ol>
+  <li><p><strong>لو الهدف المهنى لسه غير محدد</strong> — الخيار اللى هدفه غير محدد لازم يكون الخيار <strong>بأوسع أبواب خروج</strong>. <code>Java</code> عندها: <code>backend</code> مؤسسى، و<code>Android</code>، وهندسة داتا — <code>Kafka</code> و<code>Spark</code> كلاهما <code>JVM</code> — وتحوّل سهل لـ <code>Kotlin</code> و<code>Scala</code>. مفيش بديل بنفس عرض المخارج.</p></li>
+  <li><p><strong>كلغة أولى بتعلّم اللى غيرها بيخبّيه</strong> — الـ <code>types</code>، والـ <code>OOP</code>، وإدارة الذاكرة، والـ <code>concurrency</code>. والحاجات دى بالظبط هى اللى تخطّيها بيخلق الـ <code>junior</code> غير القابل للتوظيف فى ٢٠٢٦. اللغات «السهلة» بتأجل الألم مش بتلغيه.</p></li>
+  <li><p><strong>التعلم بمساعدة الـ <code>AI</code></strong> — <code>Java</code> من أكتر اللغات اللى الـ <code>AI</code> بيشرحها صح، لأن كمية التوثيق والكود العام عنها ضخمة. ميزة حقيقية لمن بيتعلم بالطريقة دى.</p></li>
+</ol>
+
+<h3>الشروط اللى القرار ده مشروط بيها</h3>
+
+<p>القرار ده يبقى <strong>غلط</strong> لو كسرت أى شرط من دول:</p>
+
+<div class="card">
+<ul>
+  <li><strong>توقّع ١٨–٣٠ شهر لأول وظيفة</strong>، مش ٦. لو مش قادر تتحمل المدة دى، <code>Java</code> مش الاختيار الصح.</li>
+  <li><strong>ممنوع <code>tutorial hell</code>.</strong> الكورسات وسيلة، والدليل الوحيد على التقدم هو كود شغّال منشور.</li>
+  <li><strong>٢–٣ مشاريع حقيقية منشورة</strong> <code>deployed</code>، مش على <code>localhost</code> وخلاص.</li>
+  <li><strong>متكتبش سطر مش فاهمه.</strong> الكود المولّد اللى ميقدرش تشرحه مش بتاعك، والإنترفيو بيكشف ده فى ٥ دقايق.</li>
+  <li><strong>حدّد الهدف خلال أول شهرين.</strong> الهدف بيحدد المشاريع، والمشاريع بتحدد الـ <code>CV</code>.</li>
+</ul>
+</div>
+
+<h3>الاستراتيجية مش «أتعلم Java وأدوّر شغل»</h3>
+
+<p>الاستراتيجية الصح:</p>
+
+<pre><code>Java عميقة  +  دومين مالى/مصرفى  +  استهداف خليجى/أوروبى</code></pre>
+
+<p>التخصص فى دومين هو اللى بيقفز بيك فوق طابور الـ <code>junior</code> المزدحم. مطور <code>Java</code> عادى بيتنافس مع ٣٠٠ واحد؛ مطور <code>Java</code> فاهم أنظمة الدفع بيتنافس مع ١٠.</p>
+
+<footer class="foot">
+  <p><strong>المصادر</strong></p>
+  <ul>
+    <li><a href="https://docs.bswen.com/blog/2026-02-24-java-job-market-2026/">Java Developer Job Market in 2026 — BSWEN</a></li>
+    <li><a href="https://www.danilchenko.dev/posts/junior-developer-jobs-2026/">Junior Developer Jobs in 2026: 67% Fewer Openings</a></li>
+    <li><a href="https://beon.tech/blog/software-development-talent-shortage/">Software Development Talent Shortage in 2026 — BEON.tech</a></li>
+    <li><a href="https://www.globalsoftwarecompanies.com/software-engineer-shortage">The Software Engineer Shortage in 2026: A Bifurcation Problem</a></li>
+    <li><a href="https://www.bayt.com/en/egypt/jobs/java-spring-boot-jobs-in-cairo/">Java Spring Boot Jobs in Cairo — Bayt.com</a></li>
+    <li><a href="https://egypt.tanqeeb.com/s/jobs/Java-Developer-jobs">Java Developer Jobs in Egypt — Tanqeeb</a></li>
+  </ul>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var r = document.documentElement, k = 'jsp-theme', s = localStorage.getItem(k);
+  if (s) r.setAttribute('data-theme', s);
+  document.getElementById('tt').addEventListener('click', function () {
+    var dark = r.getAttribute('data-theme') === 'dark' ||
+      (!r.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = dark ? 'light' : 'dark';
+    r.setAttribute('data-theme', next);
+    localStorage.setItem(k, next);
+  });
+})();
+</script>
+</body>
+</html>

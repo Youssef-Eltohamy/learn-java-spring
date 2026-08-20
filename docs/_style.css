@@ -1,0 +1,418 @@
+/* ستايل مشترك لصفحات مسار Java & Spring */
+
+:root {
+  --bg: #fbfaf8;
+  --surface: #ffffff;
+  --text: #1c1b19;
+  --muted: #6b6862;
+  --border: #e3e0da;
+  --accent: #b45309;
+  --accent-soft: #fef3e2;
+  --code-bg: #f2f0ec;
+  --code-text: #9a3412;
+  --ok: #15803d;
+  --warn: #b45309;
+  --bad: #b91c1c;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 8px 24px rgba(0, 0, 0, .05);
+  --radius: 10px;
+  --font: "Segoe UI", "Tahoma", "Arial", sans-serif;
+  --mono: "Cascadia Code", "Consolas", "Courier New", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17161a;
+    --surface: #1f1e23;
+    --text: #e8e6e3;
+    --muted: #a09c96;
+    --border: #33313a;
+    --accent: #f0a04b;
+    --accent-soft: #2a2119;
+    --code-bg: #2a2830;
+    --code-text: #f0a04b;
+    --ok: #4ade80;
+    --warn: #fbbf24;
+    --bad: #f87171;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #17161a;
+  --surface: #1f1e23;
+  --text: #e8e6e3;
+  --muted: #a09c96;
+  --border: #33313a;
+  --accent: #f0a04b;
+  --accent-soft: #2a2119;
+  --code-bg: #2a2830;
+  --code-text: #f0a04b;
+  --ok: #4ade80;
+  --warn: #fbbf24;
+  --bad: #f87171;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.95;
+  direction: rtl;
+  text-align: right;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 6rem;
+}
+
+/* ---------- الترويسة ---------- */
+
+.pagehead {
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 1.75rem;
+  margin-bottom: 3rem;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  margin: 0 0 .6rem;
+}
+
+.pagehead h1 {
+  font-size: 2.1rem;
+  line-height: 1.4;
+  margin: 0 0 .9rem;
+  font-weight: 700;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: .88rem;
+  line-height: 2.1;
+  margin: 0;
+}
+
+.meta span + span::before {
+  content: "•";
+  margin: 0 .6rem;
+  opacity: .5;
+}
+
+/* ---------- العناوين ---------- */
+
+h2 {
+  font-size: 1.5rem;
+  margin: 3.5rem 0 1.2rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.15rem;
+  margin: 2.5rem 0 .8rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+h4 {
+  font-size: 1rem;
+  margin: 1.8rem 0 .5rem;
+  font-weight: 700;
+}
+
+p { margin: 0 0 1.1rem; }
+
+ul, ol { padding-inline-start: 1.5rem; margin: 0 0 1.2rem; }
+li { margin-bottom: .5rem; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-style: dotted; }
+
+strong { font-weight: 700; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+/* ---------- الكود ---------- */
+
+code {
+  font-family: var(--mono);
+  font-size: .87em;
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: .12em .42em;
+  border-radius: 4px;
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+  margin: 0 0 1.5rem;
+  line-height: 1.7;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: var(--text);
+  font-size: .85rem;
+  white-space: pre;
+  display: block;
+}
+
+/* ---------- الجداول ---------- */
+
+.tablewrap {
+  overflow-x: auto;
+  margin: 0 0 1.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: .93rem;
+}
+
+th, td {
+  text-align: right;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: var(--accent-soft);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+tbody tr:last-child td { border-bottom: 0; }
+
+/* ---------- البطاقات والتنبيهات ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  margin: 0 0 1.8rem;
+  box-shadow: var(--shadow);
+}
+
+.card > :last-child { margin-bottom: 0; }
+
+.callout {
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.15rem 1.4rem;
+  margin: 0 0 1.8rem;
+}
+
+.callout > :last-child { margin-bottom: 0; }
+
+.callout-title {
+  font-weight: 700;
+  margin: 0 0 .45rem;
+  font-size: .82rem;
+  letter-spacing: .04em;
+  color: var(--accent);
+}
+
+.callout.ok  { background: rgba(21, 128, 61, .07); }
+.callout.bad { background: rgba(185, 28, 28, .07); }
+
+.callout.ok  .callout-title { color: var(--ok); }
+.callout.bad .callout-title { color: var(--bad); }
+
+blockquote {
+  margin: 0 0 1.6rem;
+  padding: .9rem 1.3rem;
+  border-inline-start: 2px solid var(--border);
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+
+blockquote > :last-child { margin-bottom: 0; }
+
+/* ---------- الأحكام ---------- */
+
+.verdict {
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 700;
+  padding: .2rem .7rem;
+  border-radius: 999px;
+  margin-bottom: .8rem;
+}
+
+.verdict.true    { background: rgba(21, 128, 61, .13);  color: var(--ok); }
+.verdict.partial { background: rgba(180, 83, 9, .13);   color: var(--warn); }
+.verdict.false   { background: rgba(185, 28, 28, .13);  color: var(--bad); }
+
+/* ---------- قائمة المهام ---------- */
+
+.checklist { list-style: none; padding-inline-start: 0; }
+
+.checklist li {
+  position: relative;
+  padding-inline-start: 1.9rem;
+  margin-bottom: .6rem;
+}
+
+.checklist li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: .55em;
+  width: 1.05rem;
+  height: 1.05rem;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+}
+
+/* ---------- المراحل ---------- */
+
+.phase {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.7rem;
+  margin: 0 0 1.6rem;
+  box-shadow: var(--shadow);
+}
+
+.phase-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .8rem;
+  margin-bottom: .4rem;
+}
+
+.phase-num {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: .82rem;
+  padding: .15rem .65rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.phase-head h3 { margin: 0; color: var(--text); font-size: 1.2rem; }
+
+.phase-dur {
+  color: var(--muted);
+  font-size: .85rem;
+  margin-inline-start: auto;
+  white-space: nowrap;
+}
+
+.phase > :last-child { margin-bottom: 0; }
+
+/* ---------- التنقل ---------- */
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-bottom: 2.5rem;
+}
+
+.nav a {
+  display: inline-block;
+  padding: .4rem .95rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .87rem;
+  transition: .15s;
+}
+
+.nav a:hover, .nav a[aria-current="page"] {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.foot {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+.foot ul { padding-inline-start: 1.3rem; }
+.foot li { margin-bottom: .35rem; }
+
+/* ---------- الطباعة ---------- */
+
+@media print {
+  body { background: #fff; color: #000; font-size: 12pt; }
+  .nav, .themetoggle { display: none; }
+  .card, .phase, .callout, .tablewrap { break-inside: avoid; box-shadow: none; }
+  h2 { break-after: avoid; }
+}
+
+@media (max-width: 600px) {
+  body { font-size: 16px; line-height: 1.85; }
+  .wrap { padding: 2rem 1rem 4rem; }
+  .pagehead h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.3rem; }
+  .phase { padding: 1.2rem; }
+}
+
+/* ---------- زر الثيم ---------- */
+
+.themetoggle {
+  position: fixed;
+  top: 1rem;
+  inset-inline-start: 1rem;
+  z-index: 10;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 999px;
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  line-height: 1;
+}
+
+.themetoggle:hover { color: var(--accent); border-color: var(--accent); }

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>خارطة طريق Java Backend</title>
+<link rel="stylesheet" href="_style.css">
+</head>
+<body>
+<button class="themetoggle" id="tt" title="تبديل الثيم" aria-label="تبديل الثيم">◐</button>
+
+<div class="wrap">
+
+<nav class="nav">
+  <a href="index.html">الفهرس</a>
+  <a href="00-market-analysis.html">تحليل السوق</a>
+  <a href="01-roadmap.html" aria-current="page">خارطة الطريق</a>
+  <a href="02-resources.html">المصادر</a>
+</nav>
+
+<header class="pagehead">
+  <p class="eyebrow">خطة تنفيذ</p>
+  <h1>من الصفر لوظيفة Java Backend</h1>
+  <p class="meta">
+    <span>نقطة البداية المفترضة: الصفر — من غير <code>stack</code> سابق</span>
+    <span>المدى الواقعى: ١٨–٣٠ شهر</span>
+  </p>
+</header>
+
+<p>الخطة دى مبنية على <a href="00-market-analysis.html">تحليل السوق</a>. اقرأه الأول لو لسه ماقريتوش، لأنه بيفسر ليه الترتيب هنا كده.</p>
+
+<h2>القواعد الحاكمة</h2>
+
+<p>اقرأ القواعد دى قبل أى مرحلة. كسر أى واحدة فيهم بيحوّل الخطة لمجرد قائمة أمنيات.</p>
+
+<div class="card">
+<ol>
+  <li><strong>٧٠٪ بناء / ٣٠٪ قراءة.</strong> لو النسبة اتعكست، إنت فى <code>tutorial hell</code>.</li>
+  <li><strong>كل مشروع يتنشر.</strong> <code>localhost</code> مش دليل على حاجة.</li>
+  <li><strong>متكتبش سطر مش فاهمه.</strong> خصوصاً المولّد بالـ <code>AI</code>.</li>
+  <li><strong>الـ <code>AI</code> يشرح، مش يكتب</strong> — فى المرحلة ٠ والمرحلة ١ تحديداً. بعد كده يبقى أداة إنتاج.</li>
+  <li><strong>متقفزش لـ <code>Spring</code> بدرى.</strong> ده أشهر خطأ. <code>Spring</code> بيحل مشاكل — لو معرفتش المشاكل دى بنفسك، <code>Spring</code> هيبقى سحر أسود بتحفظه.</li>
+</ol>
+</div>
+
+<h2>المراحل</h2>
+
+<div class="phase">
+  <div class="phase-head">
+    <span class="phase-num">المرحلة ٠</span>
+    <h3>الأساس والقرار</h3>
+    <span class="phase-dur">٤–٦ أسابيع</span>
+  </div>
+
+  <p>هدف المرحلة دى مش <code>Java</code>. هدفها إنك تبقى قادر تشتغل أصلاً.</p>
+
+  <ul class="checklist">
+    <li><strong><code>Git</code></strong> — <code>commit</code> و<code>branch</code> و<code>merge</code> و<code>rebase</code> الأساسى و<code>GitHub</code></li>
+    <li><strong>سطر الأوامر</strong> — التنقل، الملفات، الـ <code>pipes</code>، أساسيات <code>Linux</code></li>
+    <li><strong>إزاى الويب شغال</strong> — <code>HTTP</code> و<code>request/response</code> و<code>status codes</code> و<code>DNS</code></li>
+    <li><strong><code>IntelliJ IDEA Community</code></strong> — تثبيت وإتقان الاختصارات الأساسية</li>
+    <li><strong>تحديد الهدف</strong> — ريموت بالدولار؟ وظيفة محلية؟ خليج؟ ده بيحدد كل اللى بعده</li>
+  </ul>
+
+  <div class="callout ok">
+    <p class="callout-title">مخرج المرحلة</p>
+    <p>حساب <code>GitHub</code> فيه <code>repo</code> واحد على الأقل، وبيئة تطوير شغالة.</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-head">
+    <span class="phase-num">المرحلة ١</span>
+    <h3>Java Core خالص</h3>
+    <span class="phase-dur">٣–٤ شهور</span>
+  </div>
+
+  <div class="callout bad">
+    <p><strong>ممنوع <code>Spring</code> نهائياً فى المرحلة دى.</strong> ممنوع أى <code>framework</code>.</p>
+  </div>
+
+  <ul class="checklist">
+    <li>الأساسيات — المتغيرات والشروط والحلقات والدوال</li>
+    <li>الـ <code>OOP</code> بعمق — <code>classes</code> و<code>interfaces</code> و<code>inheritance</code> و<code>polymorphism</code> و<code>abstraction</code></li>
+    <li>الـ <code>Collections</code> — <code>List</code> و<code>Map</code> و<code>Set</code> وإمتى تستخدم إيه وليه</li>
+    <li>الـ <code>Generics</code> والـ <code>Exceptions</code></li>
+    <li><code>Streams API</code> والـ <code>lambdas</code></li>
+    <li><code>File I/O</code></li>
+    <li>مقدمة <code>concurrency</code> — <code>Thread</code> و<code>ExecutorService</code> ومشكلة الـ <code>race condition</code></li>
+    <li><code>Maven</code> — ليه موجود وإزاى يشتغل</li>
+    <li><code>JUnit 5</code> + <code>Mockito</code> — اكتب اختبارات من أول يوم</li>
+  </ul>
+
+  <p><strong>المشروع:</strong> تطبيق <code>console</code> بحجم حقيقى — مثلاً نظام إدارة مكتبة أو متتبع مصاريف. بيانات فى ملفات، منطق حقيقى، اختبارات.</p>
+
+  <div class="callout ok">
+    <p class="callout-title">اختبار الاجتياز</p>
+    <p>تقدر تشرح الفرق بين <code>interface</code> و<code>abstract class</code> وإمتى تختار كل واحد — من غير ما تفتح جوجل.</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-head">
+    <span class="phase-num">المرحلة ٢</span>
+    <h3>الداتا والشبكة</h3>
+    <span class="phase-dur">٣–٤ شهور</span>
+  </div>
+
+  <ul class="checklist">
+    <li><strong><code>SQL</code> بعمق</strong> — <code>joins</code> و<code>indexes</code> و<code>transactions</code> و<code>normalization</code> و<code>execution plans</code></li>
+    <li><strong><code>PostgreSQL</code></strong> — تثبيت وتشغيل واستخدام حقيقى</li>
+    <li><strong><code>JDBC</code> يدوى</strong> — اتصل بقاعدة بيانات من غير <code>ORM</code>، عشان تحس بالألم اللى <code>JPA</code> بيحله</li>
+    <li><strong><code>REST</code> من الأول</strong> — <code>resources</code> و<code>verbs</code> و<code>status codes</code> و<code>idempotency</code></li>
+    <li><strong><code>Servlet</code> بسيط</strong> أو <code>HTTP server</code> يدوى — عشان تفهم إيه اللى <code>Spring</code> بيخبّيه</li>
+    <li><strong><code>JSON</code></strong> والـ <code>serialization</code></li>
+  </ul>
+
+  <p><strong>المشروع:</strong> <code>API</code> بسيط من غير <code>Spring</code> — <code>endpoints</code> قليلة، قاعدة بيانات حقيقية، <code>JDBC</code> يدوى.</p>
+
+  <div class="callout ok">
+    <p class="callout-title">اختبار الاجتياز</p>
+    <p>تكتب <code>query</code> فيها <code>JOIN</code> على ٣ جداول و<code>GROUP BY</code> من غير مساعدة، وتشرح ليه الـ <code>index</code> بيسرّعها.</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-head">
+    <span class="phase-num">المرحلة ٣</span>
+    <h3>Spring Boot</h3>
+    <span class="phase-dur">٤–٦ شهور</span>
+  </div>
+
+  <p>دلوقتى بس، وبعد ما عرفت المشاكل بنفسك.</p>
+
+  <ul class="checklist">
+    <li><strong><code>Spring Core</code></strong> — الـ <code>IoC container</code> والـ <code>Dependency Injection</code> والـ <code>beans</code> ودورة حياتها</li>
+    <li><strong><code>Spring Boot</code></strong> — الـ <code>auto-configuration</code> وليه موجود</li>
+    <li><strong><code>Spring Web</code></strong> — <code>controllers</code> و<code>validation</code> ومعالجة أخطاء موحّدة</li>
+    <li><strong><code>Spring Data JPA</code></strong> — و<strong>مصايده</strong>: <code>N+1</code> و<code>lazy loading</code> و<code>dirty checking</code></li>
+    <li><strong><code>Spring Security</code></strong> — <code>JWT</code> و<code>roles</code> و<code>OAuth2</code> الأساسى</li>
+    <li><strong><code>@Transactional</code></strong> — وإزاى بيفشل صح ولا غلط</li>
+    <li><strong><code>Flyway</code></strong> لإدارة تغييرات قاعدة البيانات</li>
+    <li><strong><code>Testcontainers</code></strong> لاختبارات تكامل حقيقية</li>
+  </ul>
+
+  <div class="callout">
+    <p class="callout-title">المشروع الأول للـ CV</p>
+    <p><code>API</code> كامل بـ <code>authentication</code> و<code>roles</code> وقاعدة بيانات حقيقية واختبارات، ومنشور على استضافة حقيقية، ومعاه <code>README</code> محترم.</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-head">
+    <span class="phase-num">المرحلة ٤</span>
+    <h3>مستوى الإنتاج</h3>
+    <span class="phase-dur">٤–٦ شهور</span>
+  </div>
+
+  <p>الفرق بين <code>junior</code> مرفوض و<code>engineer</code> مطلوب بيتحدد هنا.</p>
+
+  <ul class="checklist">
+    <li><strong><code>Docker</code></strong> و<code>docker-compose</code></li>
+    <li><strong><code>CI/CD</code></strong> — <code>GitHub Actions</code></li>
+    <li><strong><code>Redis</code></strong> — التخزين المؤقت وأنماطه</li>
+    <li><strong><code>Kafka</code></strong> أو <code>RabbitMQ</code> — الرسائل والمعالجة غير المتزامنة</li>
+    <li><strong><code>observability</code></strong> — <code>logging</code> منظم و<code>metrics</code> و<code>tracing</code></li>
+    <li><strong>سحابة واحدة</strong> — <code>AWS</code> أساسيات: <code>EC2</code> و<code>RDS</code> و<code>S3</code> و<code>IAM</code></li>
+    <li><strong>تصميم الأنظمة</strong> — مقايضات و<code>caching</code> و<code>scaling</code> و<code>consistency</code></li>
+  </ul>
+
+  <div class="callout">
+    <p class="callout-title">المشروع الثانى للـ CV — وده الأهم</p>
+    <p>نظام فى دومين مالى. مثال: بوابة دفع مبسّطة فيها <code>idempotency</code> ومعالجة فشل و<code>audit log</code> ومعالجة غير متزامنة. ده اللى بيخلّيك مرشح متخصص مش مرشح عام.</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-head">
+    <span class="phase-num">المرحلة ٥</span>
+    <h3>الاستهداف والتقديم</h3>
+    <span class="phase-dur">من الشهر ١٨</span>
+  </div>
+
+  <ul class="checklist">
+    <li><code>CV</code> مبنى على المشاريع والأثر، مش على قائمة تقنيات</li>
+    <li><code>GitHub</code> منظف ومنظّم — الـ <code>README</code> بيتقرى قبل الكود</li>
+    <li><code>LinkedIn</code> مضبوط، والتواصل مع مهندسين فى الشركات المستهدفة</li>
+    <li>تحضير <code>system design</code> أساسى — بيتسأل حتى للـ <code>junior</code> دلوقتى</li>
+    <li>الترتيب: <code>fintech</code> مصرية ← بنوك ← مراكز تطوير أجنبية ← ريموت خليجى/أوروبى</li>
+  </ul>
+</div>
+
+<h2>مؤشرات إنك ماشى غلط</h2>
+
+<div class="tablewrap">
+<table>
+  <thead><tr><th>العلامة</th><th>التصحيح</th></tr></thead>
+  <tbody>
+    <tr><td>خلصت ٣ كورسات ومفيش مشروع منشور</td><td>وقّف الكورسات، ابنى</td></tr>
+    <tr><td>بتنسخ كود من الـ <code>AI</code> ومش فاهمه</td><td>ارجع خطوة، اشرحه لنفسك بصوت عالى</td></tr>
+    <tr><td>بتتعلم <code>Spring</code> وأنت لسه مش متمكن من <code>interfaces</code></td><td>ارجع للمرحلة ١</td></tr>
+    <tr><td>بتجمع تقنيات على الـ <code>CV</code> من غير عمق</td><td>امسح نص القايمة وعمّق الباقى</td></tr>
+    <tr><td>عدّت ٦ شهور والدافع بيموت</td><td>راجع الهدف — غالباً مش محدد كفاية</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>التوقيت المتوقع</h2>
+
+<div class="tablewrap">
+<table>
+  <thead><tr><th>المرحلة</th><th>المدة</th><th>التراكم</th></tr></thead>
+  <tbody>
+    <tr><td>٠ — الأساس</td><td>٤–٦ أسابيع</td><td>شهر ونص</td></tr>
+    <tr><td>١ — <code>Java Core</code></td><td>٣–٤ شهور</td><td>٥ شهور</td></tr>
+    <tr><td>٢ — الداتا</td><td>٣–٤ شهور</td><td>٩ شهور</td></tr>
+    <tr><td>٣ — <code>Spring</code></td><td>٤–٦ شهور</td><td>١٥ شهر</td></tr>
+    <tr><td>٤ — الإنتاج</td><td>٤–٦ شهور</td><td>٢١ شهر</td></tr>
+    <tr><td>٥ — التقديم</td><td>متوازى من ١٨</td><td>١٨–٣٠ شهر</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout bad">
+  <p>الأرقام دى بتفترض <strong>١٥–٢٠ ساعة أسبوعياً بانتظام</strong>. أقل من ٨ ساعات أسبوعياً، ضاعف المدة.</p>
+</div>
+
+</div>
+
+<script>
+(function () {
+  var r = document.documentElement, k = 'jsp-theme', s = localStorage.getItem(k);
+  if (s) r.setAttribute('data-theme', s);
+  document.getElementById('tt').addEventListener('click', function () {
+    var dark = r.getAttribute('data-theme') === 'dark' ||
+      (!r.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = dark ? 'light' : 'dark';
+    r.setAttribute('data-theme', next);
+    localStorage.setItem(k, next);
+  });
+})();
+</script>
+</body>
+</html>

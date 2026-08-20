@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مصادر عربية لكل مرحلة</title>
+<link rel="stylesheet" href="_style.css">
+<style>
+  .toolbar {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--bg);
+    padding: .9rem 0 1rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .search {
+    width: 100%;
+    font: inherit;
+    font-size: .95rem;
+    padding: .7rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    direction: rtl;
+  }
+  .search:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+  .counts { color: var(--muted); font-size: .82rem; margin: .6rem 0 0; }
+
+  .phasehead {
+    display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap;
+    margin: 3rem 0 1rem;
+    padding-bottom: .6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .phasehead .phase-num { background: var(--accent); color: #fff; font-weight: 700; font-size: .78rem; padding: .15rem .65rem; border-radius: 999px; }
+  .phasehead h2 { margin: 0; border: 0; padding: 0; font-size: 1.35rem; }
+  .phasehead .dur { color: var(--muted); font-size: .82rem; margin-inline-start: auto; }
+
+  details.topic {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: .8rem;
+    overflow: hidden;
+  }
+  details.topic[open] { box-shadow: var(--shadow); }
+
+  details.topic > summary {
+    cursor: pointer;
+    list-style: none;
+    padding: .95rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background .12s;
+  }
+  details.topic > summary::-webkit-details-marker { display: none; }
+  details.topic > summary:hover { background: var(--accent-soft); }
+  details.topic > summary::before {
+    content: "◂";
+    color: var(--accent);
+    font-size: .85rem;
+    transition: transform .18s;
+    display: inline-block;
+  }
+  details.topic[open] > summary::before { transform: rotate(-90deg); }
+
+  .pill {
+    font-size: .72rem;
+    font-weight: 600;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: .08rem .55rem;
+    margin-inline-start: auto;
+    white-space: nowrap;
+  }
+  .pill.warn { color: var(--warn); border-color: var(--warn); }
+
+  .topicbody { padding: 0 1.2rem 1.2rem; border-top: 1px solid var(--border); }
+
+  ol.reslist { list-style: none; padding: 0; margin: 1.1rem 0 0; counter-reset: r; }
+
+  ol.reslist > li {
+    position: relative;
+    padding: 0 2.4rem .1rem 0;
+    margin-bottom: 1.5rem;
+  }
+  ol.reslist > li::before {
+    counter-increment: r;
+    content: counter(r);
+    position: absolute;
+    inset-inline-start: 0;
+    top: .1rem;
+    width: 1.7rem; height: 1.7rem;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: .78rem;
+    font-weight: 700;
+    font-family: var(--mono);
+  }
+  ol.reslist > li:last-child { margin-bottom: .2rem; }
+
+  .res-t { display: block; font-weight: 700; font-size: .97rem; line-height: 1.6; margin-bottom: .25rem; }
+  .res-m { color: var(--muted); font-size: .8rem; margin: 0 0 .5rem; line-height: 1.9; }
+  .res-m b { color: var(--text); font-weight: 600; }
+  .res-m .sep { opacity: .45; margin: 0 .45rem; }
+  .res-d { margin: 0 0 .4rem; font-size: .92rem; line-height: 1.85; }
+  .res-w { margin: 0; font-size: .87rem; color: var(--muted); line-height: 1.8; }
+  .res-w b { color: var(--accent); font-weight: 700; }
+
+  .role {
+    display: inline-block;
+    font-size: .68rem; font-weight: 700;
+    padding: .1rem .5rem; border-radius: 4px;
+    margin-inline-start: .4rem;
+    vertical-align: .12em;
+    white-space: nowrap;
+  }
+  .role.main { background: rgba(21,128,61,.13); color: var(--ok); }
+  .role.sup  { background: var(--accent-soft); color: var(--accent); }
+  .role.ref  { background: var(--code-bg); color: var(--muted); }
+
+  .gap {
+    background: rgba(185,28,28,.07);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: .8rem 1.1rem;
+    margin: 1.2rem 0 0;
+    font-size: .88rem;
+    line-height: 1.85;
+  }
+  .gap b { color: var(--bad); }
+
+  .empty { color: var(--muted); text-align: center; padding: 3rem 0; display: none; }
+</style>
+</head>
+<body>
+<button class="themetoggle" id="tt" title="تبديل الثيم" aria-label="تبديل الثيم">◐</button>
+
+<div class="wrap">
+
+<nav class="nav">
+  <a href="index.html">الفهرس</a>
+  <a href="00-market-analysis.html">تحليل السوق</a>
+  <a href="01-roadmap.html">خارطة الطريق</a>
+  <a href="02-resources.html" aria-current="page">المصادر</a>
+</nav>
+
+<header class="pagehead">
+  <p class="eyebrow">مصادر تعليمية</p>
+  <h1>مصادر عربية لكل عنصر فى الخريطة</h1>
+  <p class="meta">
+    <span>اضغط على أى عنصر عشان تفتح مصادره مرتبة</span>
+    <span>آخر تحقق من الروابط: ٢٠٢٦-٠٨-٢٠</span>
+  </p>
+</header>
+
+<div class="callout">
+  <p class="callout-title">إزاى تقرأ الترتيب</p>
+  <p>المصادر جوه كل عنصر <strong>مرتبة بالترتيب اللى تتفرج بيه</strong>، مش بالجودة. رقم ١ هو اللى تبدأ بيه، واللى بعده بيبنى فوقه أو بيغطى زاوية ناقصة.</p>
+  <p><span class="role main">أساسى</span> اتفرج عليه كامل &nbsp;·&nbsp; <span class="role sup">داعم</span> يكمّل زاوية ناقصة &nbsp;·&nbsp; <span class="role ref">مرجع</span> ارجعله عند الحاجة، متتفرجش عليه بالترتيب</p>
+</div>
+
+<div class="callout bad">
+  <p class="callout-title">اقرأ ده قبل ما تبدأ</p>
+  <p>المحتوى العربى <strong>ممتاز فى المراحل ٠ و١ و٣</strong>، <strong>متوسط فى ٢ و٤</strong>، و<strong>شبه معدوم فى مواضيع الإنتاج المتقدمة</strong>. العناصر اللى فيها فجوة معلّمة صراحةً بعلامة <span class="pill warn">فجوة عربية</span>.</p>
+  <p>ودى مش مشكلة، دى حقيقة السوق: <strong>الإنجليزى التقنى مهارة إجبارية</strong> فى الشغل ده. استخدم العربى للفهم الأول، وحوّل للإنجليزى من المرحلة ٤ فصاعداً — وده بيحصل بعد سنة ونص من دلوقتى، وقتها إنجليزيتك التقنية هتكون اتظبطت.</p>
+</div>
+
+<div class="toolbar">
+  <input class="search" id="q" type="search" placeholder="ابحث عن موضوع أو قناة… مثلاً: Spring أو Docker أو SQL" aria-label="بحث فى المصادر">
+  <p class="counts" id="counts"></p>
+</div>
+
+<div id="out"></div>
+<p class="empty" id="empty">مفيش نتايج مطابقة.</p>
+
+<footer class="foot">
+  <p><strong>منهجية الاختيار والتحقق</strong></p>
+  <ul>
+    <li>كل رابط هنا <strong>اتفتح فعلياً</strong> واتقرأ منه العنوان واسم القناة وعدد الفيديوهات، مش منقول من نتيجة بحث.</li>
+    <li>اتشال مصدران ظهروا فى البحث: واحد كان معنون «جافا» وهو فعلياً كورس أندرويد، وواحد رابطه ميت.</li>
+    <li>الأولوية اتدت للقنوات اللى ورا الشرح فيها <strong>خبرة هندسية حقيقية</strong> مش شرح أكاديمى محفوظ، ولسلاسل <strong>مكتملة</strong> مش فيديوهات متفرقة.</li>
+    <li>الأرقام (عدد الفيديوهات) صحيحة وقت التحقق، وممكن تزيد لو صاحب القناة كمّل السلسلة.</li>
+  </ul>
+</footer>
+
+</div>
+
+<script>
+const DATA = [
+  {
+    n: "٠", title: "الأساس والقرار", dur: "٤–٦ أسابيع",
+    topics: [
+      {
+        t: "Git و GitHub",
+        res: [
+          { role:"main", title:"كورس Git & GitHub", ch:"أكاديمية الزيرو — أسامة الزيرو", meta:"موقع + يوتيوب",
+            url:"https://elzero.org/learn-git-and-github/",
+            d:"سلسلة بتبدأ من «يعنى إيه version control أصلاً» وبتوصل للـ branching والـ merge وحل الـ conflicts والتعامل مع GitHub.",
+            w:"أسامة الزيرو بيشرح السبب قبل الأمر، وده بالظبط اللى محتاجه فى المرحلة دى. صفحة الكورس على الموقع فيها ترتيب الحلقات جاهز." },
+          { role:"sup", title:"كورس تعلم Git & GitHub فى ساعة", ch:"غريب الشيخ | Ghareeb Elshaikh", meta:"فيديو واحد",
+            url:"https://www.youtube.com/watch?v=fDkR0TDR9dI",
+            d:"تلخيص مكثف لكل أساسيات Git فى جلسة واحدة.",
+            w:"مش بديل عن الأول — استخدمه كمراجعة سريعة قبل ما تبدأ مشروع، أو لو نسيت حاجة ومحتاج تفكرة فى دقايق." }
+        ]
+      },
+      {
+        t: "سطر الأوامر و Linux",
+        res: [
+          { role:"main", title:"كورس Command Line مع برنامج Cmder", ch:"أكاديمية الزيرو", meta:"موقع + يوتيوب",
+            url:"https://elzero.org/course-learn-command-line/",
+            d:"الفرق بين Terminal و Shell و CMD، التنقل بين المجلدات، الملفات، الـ pipes، وأسرار عملية بتوفر وقت.",
+            w:"مختصر ومركّز — بيوصلك للكفاية المطلوبة من غير ما تضيع أسبوع فى تفاصيل إدارة أنظمة مش محتاجها دلوقتى." },
+          { role:"sup", title:"كورس تعلم لينكس فى فيديو واحد | Linux Crash Course", ch:"الباشمبرمج | Hamed Esam", meta:"فيديو واحد",
+            url:"https://www.youtube.com/watch?v=pYdB2uG9pnE",
+            d:"جولة سريعة على نظام لينكس نفسه — الملفات، الصلاحيات، الحزم، العمليات.",
+            w:"سيرفرات الإنتاج كلها لينكس. مش محتاج تتقنه دلوقتى، محتاج تبطّل تخاف منه." },
+          { role:"ref", title:"كورس أوامر لينكس بالعربى", ch:"AL-Alamy Tube", meta:"١٦ فيديو",
+            url:"https://www.youtube.com/playlist?list=PLKXgWkpknjelD9khRVlcwlopzX8hFfbeU",
+            d:"شرح أمر أمر بالتفصيل مع أمثلة.",
+            w:"مرجع ترجعله لما تقابل أمر مش فاهمه — مش سلسلة تتفرج عليها بالترتيب." }
+        ]
+      },
+      {
+        t: "إزاى الويب شغال — HTTP و REST",
+        res: [
+          { role:"main", title:"شرح مفهوم الـ API وما هو REST API", ch:"Coder Shiyar (كودر شيار)", meta:"فيديو واحد",
+            url:"https://www.youtube.com/watch?v=OU5_R5yp8Ec",
+            d:"تبسيط مفهوم الـ API والـ REST بأمثلة من الواقع قبل أى كود.",
+            w:"ابدأ بيه لأنه بيبنى الصورة الذهنية. من غير الصورة دى، كل اللى جاى فى Spring هيبقى حفظ." },
+          { role:"sup", title:"شرح مفهوم الـ REST API — كلام فى البرمجة", ch:"Khalid Elshafie", meta:"فيديو واحد",
+            url:"https://www.youtube.com/watch?v=7dqpR70OfGw",
+            d:"نفس الموضوع بمستوى أعمق — قيود REST، الـ verbs، والـ status codes، ومنطق تصميم الـ resources.",
+            w:"اتفرج عليه بعد الأول بأسبوع، لما يكون المفهوم استقر. الطبقة التانية دى هى اللى بتتسأل فى الإنترفيو." }
+        ]
+      },
+      {
+        t: "تحديد الهدف وفهم المسار",
+        res: [
+          { role:"main", title:"كلام فى البرمجة (٥٥) — Backend Roadmap 2026: كيف تتعلم الباك اند بشكل صحيح؟", ch:"Yehia Tech — يحيى تك", meta:"حلقة بودكاست",
+            url:"https://www.youtube.com/watch?v=N-76Dmab-Zc",
+            d:"نقاش مع مهندس شغّال عن ترتيب تعلم الـ backend وأخطاء المبتدئين الشائعة.",
+            w:"بيساعدك تحدد الهدف — وده مخرج المرحلة ٠ الحقيقى. اسمعه وإنت ماشى، مش محتاج تركيز كامل." },
+          { role:"sup", title:"Spring Boot Roadmap in Arabic — خريطة تعلم السبرنغ بوت", ch:"Abd AbuGhazaleh — عبد ابوغزالة", meta:"فيديو واحد",
+            url:"https://www.youtube.com/watch?v=5Gtze5BPCZY",
+            d:"عرض للترتيب المنطقى لتعلم Spring وإيه اللى قبل إيه.",
+            w:"اتفرج عليه دلوقتى عشان تشوف الطريق كله من فوق — وبلاش تبدأ Spring دلوقتى، ده مش وقته." }
+        ]
+      }
+    ]
+  },
+  {
+    n: "١", title: "Java Core خالص", dur: "٣–٤ شهور",
+    topics: [
+      {
+        t: "Java من الصفر",
+        res: [
+          { role:"main", title:"Java 10 minutes a day", ch:"Dr Magdi Amer", meta:"٢١ فيديو",
+            url:"https://www.youtube.com/playlist?list=PLXtd__vEzNb7hT5KEQJ-7p30XkM0LFzUJ",
+            d:"أساسيات اللغة فى حلقات قصيرة مركزة، كل حلقة فكرة واحدة.",
+            w:"د. مجدى عامر معمارى برمجيات مش مدرّس — بيشرح <b>ليه</b> اللغة اتصممت كده، مش بس إزاى تكتبها. ودى الطبقة اللى بتفرق فى الإنترفيو. ابدأ بيه." },
+          { role:"ref", title:"البرمجة Java Zero To Hero — من البداية إلى الاحتراف", ch:"Hassouna Academy", meta:"٤٤١ فيديو",
+            url:"https://www.youtube.com/playlist?list=PLHIfW1KZRIfn9BnepQuzWiM_ZPIwUDawL",
+            d:"أضخم كورس جافا عربى موجود — بيغطى اللغة وGUI وقواعد بيانات وكل حاجة تقريباً.",
+            w:"<b>متتفرجش عليه بالترتيب من الأول للآخر.</b> ٤٤١ فيديو معناها شهور تتحرق. استخدمه كموسوعة: علقت فى موضوع؟ دوّر عليه جواه واتفرج على حلقاته بس." },
+          { role:"sup", title:"java / adel nasim", ch:"Adel Nasim", meta:"٣٠ فيديو",
+            url:"https://www.youtube.com/playlist?list=PLgYmRndkc0JGkjUrfEmgyb3HroD9hzCx2",
+            d:"سلسلة كلاسيكية معروفة فى الوسط العربى لتعليم جافا.",
+            w:"لو أسلوب د. مجدى سريع عليك، دى بتمشى بإيقاع أهدأ وشرح أطول لكل نقطة. اختار واحد وكمّله — متجمعش الاتنين." }
+        ]
+      },
+      {
+        t: "الـ OOP بعمق",
+        gap: null,
+        res: [
+          { role:"main", title:"Learning Object Oriented Programming (OOP) with Java in Arabic for beginners", ch:"Dr Magdi Amer", meta:"٤٥ فيديو",
+            url:"https://www.youtube.com/playlist?list=PLXtd__vEzNb7i9lWljXSzf-gGPhjNm8bS",
+            d:"الـ classes والـ objects والـ inheritance والـ interfaces من الصفر بترتيب منطقى.",
+            w:"دى أهم سلسلة فى المرحلة كلها. الـ OOP هو اللى Spring مبنى عليه بالكامل — لو ضعيف هنا، Spring هيبقى سحر." },
+          { role:"main", title:"Advanced OOP with Java in Arabic", ch:"Dr Magdi Amer", meta:"٣٠ فيديو",
+            url:"https://www.youtube.com/playlist?list=PLXtd__vEzNb7zikM06CisY7_QDkTnIpx9",
+            d:"الطبقة التانية — التجريد، التركيب مقابل الوراثة، والمبادئ اللى بتخلى التصميم يستحمل التغيير.",
+            w:"دى اللى بتخلق الفرق. اللى بيقف عند OOP الأساسى بيفضل junior سنين — والحاجات دى بالظبط هى الـ Dependency Injection قبل ما Spring يعملها لك." },
+          { role:"sup", title:"OOP In Java", ch:"تحت الجذر", meta:"٩ فيديوهات",
+            url:"https://www.youtube.com/playlist?list=PLZEjCjHzGS_YoMlFKvQ_nXPumCNNfW8kp",
+            d:"تلخيص سريع لمفاهيم الـ OOP.",
+            w:"للمراجعة قبل الانتقال للمرحلة اللى بعدها، أو لو حبيت تسمع نفس الفكرة بصياغة تانية عشان تثبت." }
+        ]
+      },
+      {
+        t: "هياكل البيانات والخوارزميات",
+        res: [
+          { role:"main", title:"Data Structure And Algorithm in Arabic", ch:"Dr Magdi Amer", meta:"١٤ فيديو",
+            url:"https://www.youtube.com/playlist?list=PLXtd__vEzNb7YMEv1DmNS0lsfmOCiwSY8",
+            d:"الهياكل الأساسية وتحليل التعقيد بمنظور عملى.",
+            w:"مش محتاج تبقى بطل خوارزميات، بس محتاج تعرف ليه تختار HashMap مش List. ده سؤال بيتسأل فى كل إنترفيو جافا تقريباً." }
+        ]
+      },
+      {
+        t: "Design Patterns",
+        res: [
+          { role:"main", title:"Java Design Patterns (بالعربى)", ch:"Khalid Elshafie", meta:"٧ فيديوهات",
+            url:"https://www.youtube.com/playlist?list=PL_aOZuct6oApJxeUiUFu2gdq4E2fwBrzj",
+            d:"الأنماط الشائعة بأمثلة جافا مباشرة.",
+            w:"<b>متبدأش بيها إلا بعد ما تخلص OOP بالكامل.</b> الأنماط حلول لمشاكل — لو مشفتش المشكلة بنفسك، هتحفظها وتنساها. Spring مبنى على أنماط، فده تحضير مباشر ليه." }
+        ]
+      },
+      {
+        t: "الاختبارات — JUnit و Mockito",
+        gap: "بحثت فى العربى مالقيتش كورس محترم ومكتمل لـ JUnit 5 و Mockito. الموجود مقالات متفرقة وفيديوهات ناقصة. ودى مش تفصيلة صغيرة — <b>الاختبارات هى أول حاجة بتفرق بين كود هاوٍ وكود محترف</b>، وبتتسأل فى الإنترفيو. البديل: توثيق JUnit 5 الرسمى، وقناة <code>Java Brains</code> أو <code>Amigoscode</code> بالإنجليزى. لو الإنجليزى صعب دلوقتى، شغّل الترجمة التلقائية — المصطلحات التقنية هى هى.",
+        res: []
+      }
+    ]
+  },
+  {
+    n: "٢", title: "الداتا والشبكة", dur: "٣–٤ شهور",
+    topics: [
+      {
+        t: "SQL وقواعد البيانات",
+        gap: "الموجود عربى بيغطى الـ SQL الأساسى كويس، لكن <b>الـ indexes والـ execution plans والـ transaction isolation</b> — وهى بالظبط اللى بيتسأل عنها فى إنترفيوهات البنوك — مغطاة ضعيف جداً بالعربى. اتعلم الأساس عربى، وللعمق ارجع لتوثيق PostgreSQL الرسمى وكتاب <code>Use The Index, Luke</code> المجانى على الإنترنت.",
+        res: [
+          { role:"main", title:"كورس تعلم MySQL للتعامل مع قواعد البيانات", ch:"أكاديمية الزيرو", meta:"موقع + يوتيوب",
+            url:"https://elzero.org/course-learn-mysql/",
+            d:"من إنشاء الجداول لأنواع البيانات والاستعلامات والـ joins والدوال.",
+            w:"أنضف مدخل عربى للـ SQL. الفرق بين MySQL وPostgreSQL فى المستوى ده شبه معدوم — اتعلم المنطق هنا وطبّق على PostgreSQL." },
+          { role:"sup", title:"SQL Course For Beginners — دورة كاملة SQL للمبتدئين بالعربى", ch:"كورسات فى البرمجة — Korsat X Parmaga", meta:"بلاى ليست",
+            url:"https://www.youtube.com/playlist?list=PLxbVBWjVdAEj8TmOUKPG0avUmLqSoQOpf",
+            d:"دورة SQL مستقلة عن أى لغة برمجة، بتركيز على الاستعلامات نفسها.",
+            w:"زاوية تانية للـ SQL بعيداً عن سياق الويب. لو موضوع الـ joins اتلخبط عليك فى الأول، دى بتشرحه بطريقة مختلفة." }
+        ]
+      },
+      {
+        t: "JDBC — الاتصال اليدوى بقاعدة البيانات",
+        gap: "مفيش كورس عربى مخصص لـ JDBC، وده مقبول لأن الجزء ده صغير. الأهم إنك <b>تعمله بنفسك مرة واحدة قبل JPA</b> عشان تحس بالألم اللى JPA بيحله. استخدم توثيق Oracle الرسمى لـ JDBC، وهو مختصر وواضح. جزء JDBC موجود كمان داخل كورس Hassouna Academy الموسوعى — دوّر عليه جواه.",
+        res: []
+      }
+    ]
+  },
+  {
+    n: "٣", title: "Spring Boot", dur: "٤–٦ شهور",
+    topics: [
+      {
+        t: "Spring Boot الأساسى",
+        res: [
+          { role:"main", title:"كورس إحتراف السبرنغ بوت باللغة العربية", ch:"Abd AbuGhazaleh — عبد ابوغزالة", meta:"٤٢ فيديو",
+            url:"https://www.youtube.com/playlist?list=PLzhWJrmO-SPX9CwimKF2-l0e0dcLEiAI2",
+            d:"سلسلة كاملة من مقدمة Spring Boot للـ controllers والـ RequestMapping والـ services والربط بقاعدة البيانات.",
+            w:"<b>ده العمود الفقرى للمرحلة دى.</b> أكمل وأنظم كورس Spring Boot عربى موجود، ٤٢ حلقة مرتبة. اتفرج عليه بالترتيب وطبّق كل حلقة بإيدك قبل ما تعدى للى بعدها." },
+          { role:"sup", title:"Java Spring Boot and WebFlux in Arabic", ch:"Dr Magdi Amer", meta:"١٧ فيديو",
+            url:"https://www.youtube.com/playlist?list=PLXtd__vEzNb4stggseoBJkEW9wNp0CNjl",
+            d:"Spring Boot من منظور معمارى، مع تغطية الـ WebFlux والبرمجة التفاعلية.",
+            w:"زاوية مختلفة تماماً — أقل تفصيلاً فى الخطوات وأعمق فى المنطق المعمارى. اتفرج عليه <b>بعد</b> ما تخلص الأول، هيرفع فهمك درجة." },
+          { role:"main", title:"Java Spring Developer — مسار كامل", ch:"Mahara Tech — منصة ITI المجانية", meta:"مسار منظم بشهادة",
+            url:"https://maharatech.gov.eg/course/view.php?id=1415",
+            d:"مسار تدريبى منظم من معهد تكنولوجيا المعلومات المصرى، مجانى بالكامل مع شهادة إتمام.",
+            w:"<b>ده أهم مصدر فى الصفحة دى بالنسبة للسوق المصرى.</b> شهادة من ITI بتفتح أبواب فى الشركات المحلية والبنوك، والمسار منظم بامتحانات مش مجرد فيديوهات. سجّل فيه بالتوازى مع كورس اليوتيوب." }
+        ]
+      },
+      {
+        t: "Spring Data JPA و Hibernate",
+        res: [
+          { role:"main", title:"Spring Data (JPA & Hibernate) with Spring Boot — Full Course in Arabic", ch:"Abd AbuGhazaleh — عبد ابوغزالة", meta:"كورس كامل فى فيديو واحد",
+            url:"https://www.youtube.com/watch?v=lWn1P42Oshw",
+            d:"الـ entities والـ repositories والعلاقات بين الجداول والاستعلامات المخصصة.",
+            w:"نفس المدرّس بتاع كورس Spring Boot، فالأسلوب متصل. ركّز فى الجزء بتاع العلاقات — ده مصدر ٩٠٪ من مشاكل JPA اللى هتقابلها." }
+        ]
+      },
+      {
+        t: "Spring Security",
+        gap: "مفيش كورس عربى مكتمل وحديث لـ Spring Security بمستوى مقبول — وده أخطر فجوة فى الصفحة، لأن <b>الأمان هو أول حاجة بيتسأل عنها فى إنترفيو بنك أو fintech</b>. الجزء الأساسى منه موجود داخل كورس <code>Abd AbuGhazaleh</code> وكورس <code>Mahara Tech</code>. للعمق (الـ JWT والـ OAuth2 والـ filter chain) لازم إنجليزى: قناة <code>Amigoscode</code> وتوثيق Spring Security الرسمى.",
+        res: []
+      }
+    ]
+  },
+  {
+    n: "٤", title: "مستوى الإنتاج", dur: "٤–٦ شهور",
+    topics: [
+      {
+        t: "Docker والحاويات",
+        res: [
+          { role:"main", title:"Docker Tutorial in Arabic — دورة دوكر بالعربى آخر إصدار", ch:"Abd AbuGhazaleh — عبد ابوغزالة", meta:"١٤ فيديو",
+            url:"https://www.youtube.com/playlist?list=PLzhWJrmO-SPV-yAYiDx7l78zWF4BAtnHt",
+            d:"الـ images والـ containers والـ volumes والـ networks و docker-compose.",
+            w:"نفس المدرّس اللى اتعلمت منه Spring، وده مقصود — الاتساق فى الأسلوب بيوفر وقت. والأمثلة فيها ربط مباشر بتطبيقات." },
+          { role:"sup", title:"Introduction to containers in Arabic using Podman", ch:"Dr Magdi Amer", meta:"بلاى ليست",
+            url:"https://www.youtube.com/playlist?list=PLXtd__vEzNb5TQ8FWZOLPJSZuzmKqF5YY",
+            d:"مفهوم الحاويات نفسه بشكل مجرد، باستخدام Podman بدل Docker.",
+            w:"بيشرح <b>الحاويات كفكرة</b> مش كأداة — وده اللى بيخليك تفهم إيه اللى بيحصل تحت. الأوامر شبه متطابقة مع Docker." }
+        ]
+      },
+      {
+        t: "DevOps و CI/CD",
+        res: [
+          { role:"main", title:"كورس أساسيات DevOps — الفيديو كامل", ch:"Abd AbuGhazaleh — عبد ابوغزالة", meta:"كورس كامل فى فيديو واحد",
+            url:"https://www.youtube.com/watch?v=Xl3K9oJlRXA",
+            d:"مقدمة شاملة لثقافة وأدوات الـ DevOps.",
+            w:"ابدأ بيه عشان تفهم الصورة الكبيرة قبل ما تدخل فى أداة بعينها. إنت مش هتبقى DevOps engineer، بس محتاج تتكلم لغتهم." },
+          { role:"main", title:"GitHub Actions full course Arabic", ch:"Ahmed Elfakharany", meta:"كورس كامل",
+            url:"https://www.youtube.com/watch?v=7gJFHjXscr8",
+            d:"بناء pipelines للاختبار والبناء والنشر التلقائى.",
+            w:"ده اللى هتطبقه فعلياً على مشاريعك. مشروع فيه CI شغّال بيقول للـ recruiter إنك بتفكر زى مهندس مش زى طالب." },
+          { role:"ref", title:"DevOps بالعربى", ch:"بلاى ليست", meta:"٩ فيديوهات",
+            url:"https://www.youtube.com/playlist?list=PLluZGtIpwF_BGuqt1MHJMmTz2JgV0u4e0",
+            d:"سلسلة قصيرة تغطى مفاهيم DevOps المتفرقة.",
+            w:"مرجع تكميلى — ارجعله لو مفهوم معين فضل ضبابى بعد الاتنين اللى فوق." }
+        ]
+      },
+      {
+        t: "Microservices",
+        res: [
+          { role:"main", title:"Microservices — شرح مفصل بكل بساطة باللغة العربية", ch:"Abd AbuGhazaleh — عبد ابوغزالة", meta:"فيديو واحد",
+            url:"https://www.youtube.com/watch?v=8jRHDIBdc80",
+            d:"المفهوم نفسه، وإمتى يكون مناسب وإمتى يكون خطأ.",
+            w:"ابدأ بيه. أهم حاجة تطلع بيها من الفيديو ده هى <b>إمتى متستخدمش microservices</b> — وده اللى بيميّز المهندس عن مردد المصطلحات." },
+          { role:"sup", title:"Master Microservices with Spring Boot and Spring Cloud", ch:"Abd AbuGhazaleh — عبد ابوغزالة", meta:"كورس",
+            url:"https://www.youtube.com/watch?v=H38gCq1ZdhQ",
+            d:"التطبيق العملى بـ Spring Cloud — الـ service discovery والـ gateway والـ config server.",
+            w:"التطبيق بعد المفهوم. متدخلش هنا قبل ما يكون عندك تطبيق Spring Boot واحد شغّال ومنشور." }
+        ]
+      },
+      {
+        t: "Kafka والرسائل",
+        gap: "التغطية العربية لـ Kafka <b>سطحية</b> — الموجود بيشرح المفاهيم بس، ومفيش سلسلة عربية بتغطى الـ consumer groups والـ partitioning و exactly-once بعمق. اتفرج على المصادر دى للفهم الأول، وللتطبيق الجدى استخدم توثيق <code>Spring for Apache Kafka</code> الرسمى — وهو من أوضح ما كتبته Spring.",
+        res: [
+          { role:"main", title:"Kafka — كافكا بالعربى", ch:"pragma", meta:"فيديو واحد",
+            url:"https://www.youtube.com/watch?v=X79IjgIUDzU",
+            d:"تعريف Kafka ودوره كـ message broker فى معمارية الـ microservices.",
+            w:"مدخل مفاهيمى نضيف. اتفرج عليه عشان تفهم المشكلة اللى Kafka اخترع عشانها قبل أى تفاصيل تقنية." },
+          { role:"sup", title:"Kafka Course (عربى)", ch:"بلاى ليست", meta:"٧ فيديوهات",
+            url:"https://www.youtube.com/playlist?list=PL3GuRQ94SH0xVf7JtUuszwp6DoODbSRRE",
+            d:"سلسلة قصيرة بتغطى المفاهيم الأساسية بشكل عملى أكتر.",
+            w:"سبع حلقات بتديك الأساس. اعتبرها نقطة انطلاق للتوثيق الإنجليزى مش نهاية المطاف." }
+        ]
+      },
+      {
+        t: "السحابة — AWS",
+        res: [
+          { role:"main", title:"AWS Tutorial — تعلم الحوسبة السحابية من الصفر للاحتراف", ch:"Tiger4Code (by Noor Sabahi)", meta:"٦٢ فيديو",
+            url:"https://www.youtube.com/playlist?list=PLVaP8SbYAAiuis27otHZMnlYZ76Eq4Xe8",
+            d:"سلسلة طويلة من فتح الحساب المجانى لخدمات AWS الأساسية.",
+            w:"<b>متتفرجش على الـ ٦٢ كلهم.</b> إنت محتاج EC2 و RDS و S3 و IAM بس. حدد الحلقات دى واتفرج عليها، وسيب الباقى لحد ما تحتاجه فعلاً." }
+        ]
+      },
+      {
+        t: "تصميم الأنظمة — System Design",
+        res: [
+          { role:"main", title:"System Design بالعربى", ch:"Ahmed Elemam — أحمد الإمام", meta:"١٠ فيديوهات",
+            url:"https://www.youtube.com/playlist?list=PLTRDUPO2OmIkAcnzgg0hi7SpiKVwGro-y",
+            d:"مفاهيم التوسع والـ caching والـ consistency والمقايضات المعمارية.",
+            w:"أحمد الإمام مهندس شغّال على أنظمة كبيرة فعلاً، ومحتواه من أفضل ما فى العربى فى الموضوع ده. <b>System design بيتسأل حتى للمستويات المبتدئة دلوقتى.</b>" },
+          { role:"sup", title:"System Design fundamentals — تيك بودكاست بالعربى", ch:"Ahmed Elemam — أحمد الإمام", meta:"حلقة بودكاست",
+            url:"https://www.youtube.com/watch?v=hxBMAIbAb-c",
+            d:"نقاش مفتوح حول أساسيات تصميم الأنظمة وكيف تتعامل مع سؤال system design فى الإنترفيو.",
+            w:"اسمعه وإنت ماشى. الفايدة هنا مش المعلومة، الفايدة إنك تسمع مهندسين بيفكروا بصوت عالى — ودى مهارة بتتعدى بالعدوى." }
+        ]
+      },
+      {
+        t: "الـ Observability والـ Caching",
+        gap: "<b>مفيش تغطية عربية تُذكر</b> لـ Redis أو الـ structured logging أو الـ distributed tracing. ودى مش مصادفة — دى مواضيع بتظهر فى الشغل الحقيقى مش فى الكورسات. وصولك للنقطة دى هيكون بعد ~٢٠ شهر، ووقتها لازم تكون بتقرا إنجليزى بارتياح. المصادر: توثيق Redis الرسمى، وتوثيق <code>Spring Boot Actuator</code>، وقناة <code>Ahmed Elemam</code> بتلمس المواضيع دى فى سياق أوسع.",
+        res: []
+      }
+    ]
+  },
+  {
+    n: "٥", title: "الاستهداف والتقديم", dur: "من الشهر ١٨",
+    topics: [
+      {
+        t: "التحضير للسوق والإنترفيو",
+        res: [
+          { role:"main", title:"قناة Ahmed Elemam — أحمد الإمام", ch:"محتوى مستمر", meta:"قناة كاملة",
+            url:"https://www.youtube.com/@ahmdelemam",
+            d:"محتوى عربى موجّه لمهندسى البرمجيات: الـ backend، قواعد البيانات، الأنظمة الموزّعة، ومسار الـ senior/staff.",
+            w:"فى المرحلة دى إنت مش محتاج كورسات، محتاج <b>تسمع مهندسين بيتكلموا شغل</b>. الفيديوهات عن مسار الترقى والمهارات الناعمة قيمتها هنا أعلى من أى كورس تقنى." },
+          { role:"sup", title:"كلام فى البرمجة — Backend Roadmap 2026", ch:"Yehia Tech — يحيى تك", meta:"حلقة بودكاست",
+            url:"https://www.youtube.com/watch?v=N-76Dmab-Zc",
+            d:"نفس الحلقة بتاعة المرحلة ٠ — لكن بمعنى مختلف تماماً دلوقتى.",
+            w:"اسمعها تانى بعد سنة ونص. هتلاقى نص الكلام اللى عدّى عليك أول مرة بقى واضح — ودى أحسن طريقة تقيس بيها تقدمك." }
+        ]
+      },
+      {
+        t: "الشهادات المصرية المجانية",
+        res: [
+          { role:"main", title:"Mahara Tech — منصة ITI التدريبية", ch:"معهد تكنولوجيا المعلومات (وزارة الاتصالات)", meta:"مسارات + شهادات",
+            url:"https://maharatech.gov.eg/course/view.php?id=1415",
+            d:"منصة حكومية مجانية بمسارات منظمة وشهادات إتمام معترف بيها محلياً.",
+            w:"الداخل للسوق <b>من غير شهادة جامعية فى المجال</b> بيقابل أكبر عائق عند فلترة الـ CV الأولى. شهادة ITI مش بتعوّض المشاريع، لكنها بتعدّى الفلتر ده عشان المشاريع تتشاف أصلاً." }
+        ]
+      }
+    ]
+  }
+];
+
+const roleLabel = { main: "أساسى", sup: "داعم", ref: "مرجع" };
+
+function esc(s) { return String(s); }
+
+function render(filter) {
+  const f = (filter || "").trim().toLowerCase();
+  const out = document.getElementById("out");
+  let html = "", shownRes = 0, shownTopics = 0;
+
+  for (const ph of DATA) {
+    const topics = ph.topics.filter(tp => {
+      if (!f) return true;
+      const hay = (tp.t + " " + (tp.gap || "") + " " +
+        tp.res.map(r => r.title + " " + r.ch + " " + r.d + " " + r.w).join(" ")).toLowerCase();
+      return hay.includes(f);
+    });
+    if (!topics.length) continue;
+
+    html += `<div class="phasehead"><span class="phase-num">المرحلة ${ph.n}</span><h2>${ph.title}</h2><span class="dur">${ph.dur}</span></div>`;
+
+    for (const tp of topics) {
+      shownTopics++;
+      shownRes += tp.res.length;
+      const pill = tp.gap
+        ? `<span class="pill warn">فجوة عربية</span>`
+        : `<span class="pill">${tp.res.length} مصادر</span>`;
+      html += `<details class="topic"${f ? " open" : ""}><summary>${tp.t}${pill}</summary><div class="topicbody">`;
+      if (tp.res.length) {
+        html += `<ol class="reslist">`;
+        for (const r of tp.res) {
+          html += `<li>
+            <a class="res-t" href="${r.url}" target="_blank" rel="noopener">${r.title}<span class="role ${r.role}">${roleLabel[r.role]}</span></a>
+            <p class="res-m"><b>${r.ch}</b><span class="sep">·</span>${r.meta}</p>
+            <p class="res-d">${r.d}</p>
+            <p class="res-w"><b>ليه دى:</b> ${r.w}</p>
+          </li>`;
+        }
+        html += `</ol>`;
+      }
+      if (tp.gap) html += `<p class="gap"><b>فجوة فى المحتوى العربى:</b> ${tp.gap}</p>`;
+      html += `</div></details>`;
+    }
+  }
+
+  out.innerHTML = html;
+  document.getElementById("empty").style.display = html ? "none" : "block";
+  document.getElementById("counts").textContent =
+    f ? `${shownTopics} عنصر · ${shownRes} مصدر مطابق` : `${shownTopics} عنصر · ${shownRes} مصدر متحقَّق منه`;
+}
+
+document.getElementById("q").addEventListener("input", e => render(e.target.value));
+render("");
+
+(function () {
+  var r = document.documentElement, k = 'jsp-theme', s = localStorage.getItem(k);
+  if (s) r.setAttribute('data-theme', s);
+  document.getElementById('tt').addEventListener('click', function () {
+    var dark = r.getAttribute('data-theme') === 'dark' ||
+      (!r.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = dark ? 'light' : 'dark';
+    r.setAttribute('data-theme', next);
+    localStorage.setItem(k, next);
+  });
+})();
+</script>
+</body>
+</html>
